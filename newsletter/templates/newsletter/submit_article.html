@@ -32,14 +32,14 @@
             <form id="newsubmit" method="post" action="{% url 'submit_article' %}">
                 {% csrf_token %}
                 <h2 class="title">Submit an Article</h2>
-                
+
                 <div class="form-group">
-                    <label for="title">Article Title</label><br><br>
+                    <label for="title">Article Title</label><br>
                     <input type="text" name="title" id="title" required placeholder="Enter article title">
                 </div>
 
                 <div class="form-group">
-                    <label for="category">Category</label><br><br>
+                    <label for="category">Category</label><br>
                     <select name="category" id="category" required>
                         <option value="" disabled selected>Select a category</option>
                         {% for category in form.category.field.queryset %}
@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="content">Content</label><br><br>
+                    <label for="content">Content</label><br>
                     <textarea name="content" id="content" required rows="8"
                         placeholder="Write your article content here..."></textarea>
                 </div>
@@ -61,12 +61,13 @@
         </div>
     </main>
 
-    <footer class="footer">
-        
+    <footer>
+        <p>&copy 2025 AMC News</p>
         <div class="links">
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fa-brands fa-twitter"></i>
-            <i class="fa-brands fa-instagram"></i>
+            <a href=""><i class="fa-brands fa-facebook"></i></a>
+            <a href=""><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.instagram.com/amc.education?igsh=MTg3MndnemdtYjJhZg=="><i
+                    class="fa-brands fa-instagram"></i></a>
         </div>
     </footer>
 </body>
