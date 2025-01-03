@@ -23,7 +23,13 @@ DEBUG = env.bool('DEBUG', default=True)
 
 # Application definition
 
-ALLOWED_HOSTS = ['news-ni7g.onrender.com','0.0.0.0']
+ALLOWED_HOSTS = [
+    'news-ni7g.onrender.com',
+    '0.0.0.0', 
+    '52.41.36.82',
+    '54.191.253.12',
+    '44.226.122.3'
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
