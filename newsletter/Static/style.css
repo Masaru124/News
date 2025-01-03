@@ -32,7 +32,6 @@ body {
 .header {
     position: sticky;
     top: 0;
-    z-index: 1000;
     background-color: #006994;
     box-shadow: var(--shadow);
     width: 100%;
@@ -63,6 +62,7 @@ body {
 .nav-links {
     width: 100%;
     display: flex;
+    margin: 0 50px;
     gap: 20px;
     justify-content: flex-end;
 }
@@ -473,7 +473,7 @@ footer p {
 }
 
 .links i {
-    padding: 30px;
+    padding: 20px;
     font-size: 16px;
 }
 

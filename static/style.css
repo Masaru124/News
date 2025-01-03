@@ -56,13 +56,14 @@ body {
 }
 
 .nav-container {
-    padding: 10px;
+    padding: 10px 50px;
     background-color: var(--white);
 }
 
 .nav-links {
     width: 100%;
     display: flex;
+    
     gap: 20px;
     justify-content: flex-end;
 }
@@ -473,7 +474,7 @@ footer p {
 }
 
 .links i {
-    padding: 30px;
+    padding: 20px;
     font-size: 16px;
 }
 
@@ -481,6 +482,10 @@ footer p {
     color: white;
     text-decoration: none;
 }
+.news-title .news-excerpt .news-date .news-category{
+    font-size: 19px;
+}
+
 
 /* Animations */
 @keyframes fadeInDown {
