@@ -23,7 +23,7 @@ DEBUG = env.bool('DEBUG', default=True)
 
 # Application definition
 
-ALLOWED_HOSTS = ['*.vercel.app']
+ALLOWED_HOSTS = ['news-ni7g.onrender.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
