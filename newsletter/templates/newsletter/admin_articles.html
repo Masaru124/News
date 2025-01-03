@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Articles</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <div class="amc">
+            <h1>AMC Engineering College - Admin Panel</h1>
+        </div>
+        <nav class="nav-container">
+            <div class="nav-links">
+                <img class="logo" src="{% static 'images/amc.png' %}" alt="My Image">
+
+                <a href="{% url 'index' %}" class="nav-link">Home</a>
+                <a href="#" class="nav-link active">Admin Panel</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="admin-panel">
+            <h2 class="section-title">Pending Articles for Approval</h2>
+            <div class="articles-list">
+                {% for article in articles %}
+                <div class="article-card">
+                    <h3 class="article-title">{{ article.title }}</h3>
+                    <div class="article-meta">
+                        <span class="category">Category: {{ article.category.name }}</span>
+                        <span class="date">Submitted: {{ article.created_at|date:"F d, Y" }}</span>
+                    </div>
+                    <div class="article-content">
+                        <p>{{ article.content|truncatewords:50 }}</p>
+                    </div>
+                    <div class="article-actions">
+                        {% if not article.is_approved %}
+                        <a href="{% url 'approve_article' article.id %}" class="approve-btn">Approve Article</a>
+                        {% else %}
+                        <span class="approved-badge">Approved</span>
+                        {% endif %}
+                    </div>
+                </div>
+                {% empty %}
+                <p class="no-articles">No pending articles for review.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-credits">Admin Panel</p>
+        </div>
+    </footer>
+</body>
+
+</html>

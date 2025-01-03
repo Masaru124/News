@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Detail</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="amc">
+        <h1>AMC Engineering College</h1>
+    </div>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="nav-links">
+                <img class="logo" src="{% static 'images/amc.png' %}" alt="My Image">
+                <a href="{% url 'index' %}" class="nav-link active">Home</a>
+                <a href="{% url 'submit_article' %}" class="nav-link">Submit News</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="artcont">
+        <h2>{{ article.title }}</h2>
+        <p>By: {{ article.author.username }}</p>
+        <p>Category: {{ article.category.name }}</p>
+        <p>{{ article.content|safe }}</p>
+        <p>Published on: {{ article.published_date }}</p>
+        <button> <a href="{% url 'index' %}">Back to Home</a>
+        </button>
+    </div>
+
+    <footer>
+        <p>Copyright - All rights reserved</p>
+        <div class="links">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-instagram"></i>
+        </div>
+    </footer>
+</body>
+
+</html>

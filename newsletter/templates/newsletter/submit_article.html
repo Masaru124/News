@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Article - AMC News</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="amc">
+            <h1>AMC Engineering College</h1>
+        </div>
+        <nav class="nav-container">
+            <div class="nav-links">
+                <img class="logo" src="{% static 'images/amc.png' %}" alt="My Image">
+
+                <a href="{% url 'index' %}" class="nav-link">Home</a>
+                <a href="#" class="nav-link active">Submit News</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="submitnews">
+            <form id="newsubmit" method="post" action="{% url 'submit_article' %}">
+                {% csrf_token %}
+                <h2 class="title">Submit an Article</h2>
+                
+                <div class="form-group">
+                    <label for="title">Article Title</label><br><br>
+                    <input type="text" name="title" id="title" required placeholder="Enter article title">
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category</label><br><br>
+                    <select name="category" id="category" required>
+                        <option value="" disabled selected>Select a category</option>
+                        {% for category in form.category.field.queryset %}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="content">Content</label><br><br>
+                    <textarea name="content" id="content" required rows="8"
+                        placeholder="Write your article content here..."></textarea>
+                </div>
+
+                <p class="info-text">Note: Your article will be reviewed by an admin before being published.</p>
+
+                <button class="submit" type="submit">Submit Article</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        
+        <div class="links">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-instagram"></i>
+        </div>
+    </footer>
+</body>
+
+</html>

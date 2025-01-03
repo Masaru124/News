@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMC Engineering College News</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <div class="amc">
+        <h1>AMC Engineering College</h1>
+    </div>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="nav-links">
+                <img class="logo" src="{% static 'images/amc.png' %}" alt="My Image">
+                <a href="#" class="nav-link active">Home</a>
+                <a href="submit" class="nav-link">Submit News</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="news-grid">
+            <div class="section-title">
+                <h2>Latest News</h2>
+                <div class="title-underline"></div>
+            </div>
+
+            <div class="articles-container">
+                {% for article in articles %}
+                <article class="news-card">
+                    <div class="news-content">
+                        <h3 class="news-title">{{ article.title }}</h3>
+                        <p class="news-excerpt">{{ article.content|truncatewords:30 }}</p>
+                        <div class="news-meta">
+                            <span class="news-date">{{ article.created_at|date:"F d, Y" }}</span>
+                            <span class="news-category">{{ article.category }}</span>
+                        </div>
+                        <a href="{% url 'article_detail' article.id %}" class="read-more">Read More</a>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Copyright - All rights reserved</p>
+        <div class="links">
+            <a href=""><i class="fa-brands fa-facebook"></i></a>
+            <a href=""><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.instagram.com/amc.education?igsh=MTg3MndnemdtYjJhZg=="><i
+                    class="fa-brands fa-instagram"></i></a>
+        </div>
+    </footer>
+</body>
+
+</html>

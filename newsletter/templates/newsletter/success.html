@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success - AMC News</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header class="header">
+        <div class="amc">
+            <h1>AMC Engineering College</h1>
+        </div>
+        <nav class="nav-container">
+            <div class="nav-links">
+                <img class="logo" src="{% static 'images/amc.png' %}" alt="My Image">
+
+                <a href="{% url 'index' %}" class="nav-link">Home</a>
+                <a href="{% url 'submit_article' %}" class="nav-link">Submit News</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="success-message">
+            <div class="message-container">
+                <h2>Thank You!</h2>
+                <p>{{ message }}</p>
+                <div class="action-buttons">
+                    <a href="{% url 'index' %}" class="btn">Return to Home</a>
+                    <a href="{% url 'submit_article' %}" class="btn">Submit Another Article</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+     
+        <div class="links">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-instagram"></i>
+        </div>
+    </footer>
+</body>
+</html>
