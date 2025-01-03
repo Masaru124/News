@@ -459,7 +459,7 @@ footer {
     bottom: 0;
     position: fixed;
     z-index: 1000;
-    height: 40px;
+    height: 35px;
     background-color: #006994;
     width: 100%;
     display: flex;
@@ -535,6 +535,12 @@ footer p {
     .submitnews {
         margin: 2rem 1rem;
         padding: 1.5rem;
+    }
+    .welcome {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #ffffff;
+        animation: pop-in 1s forwards;
     }
 
     footer {
