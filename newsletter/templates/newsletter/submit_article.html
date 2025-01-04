@@ -13,19 +13,33 @@
 </head>
 
 <body>
+    <div class="amc">
+        <h1>AMC Engineering College</h1>
+    </div>
     <header class="header">
-        <div class="amc">
-            <h1>AMC Engineering College</h1>
-        </div>
         <nav class="nav-container">
+            <button class="menu-toggle" onclick="toggleSidebar()">☰</button> <!-- Menu Toggle -->
             <div class="nav-links">
-                <img class="logo" src="{% static 'images/amc.png' %}" alt="My Image">
-
-                <a href="{% url 'index' %}" class="nav-link">Home</a>
+                <img class="logo" src="{% static 'images/amc.png' %}" alt="Logo">
+                 <a href="{% url 'index' %}" class="nav-link">Home</a>
                 <a href="#" class="nav-link active">Submit News</a>
+                <a href=""><i class="fa-sharp fa-solid fa-user"></i></a>
             </div>
         </nav>
     </header>
+    
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>Menu</h2>
+            <button class="close-btn" onclick="toggleSidebar()">✖</button>
+        </div>
+        <div class="sidebar-links">
+            <a href="{% url 'index'%}" class="sidebar-link ">Home</a>
+            <a href="#" class="sidebar-link active">Submit News</a>
+            <a href="" class="sidebar-link">Profile</a>
+        </div>
+    </div>
 
     <main>
         <div class="submitnews">
@@ -70,6 +84,13 @@
                     class="fa-brands fa-instagram"></i></a>
         </div>
     </footer>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('visible');
+        }
+
+    </script>
 </body>
 
 </html>

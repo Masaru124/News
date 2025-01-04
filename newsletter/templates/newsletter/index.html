@@ -19,13 +19,29 @@
     </div>
     <header class="header">
         <nav class="nav-container">
+            <button class="menu-toggle" onclick="toggleSidebar()">☰</button> <!-- Menu Toggle -->
             <div class="nav-links">
-                <img class="logo" src="{% static 'images/amc.png' %}" alt="My Image">
+                <img class="logo" src="{% static 'images/amc.png' %}" alt="Logo">
                 <a href="#" class="nav-link active">Home</a>
                 <a href="submit" class="nav-link">Submit News</a>
+                <a href=""><i class="fa-sharp fa-solid fa-user"></i></a>
             </div>
         </nav>
     </header>
+    
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>Menu</h2>
+            <button class="close-btn" onclick="toggleSidebar()">✖</button>
+        </div>
+        <div class="sidebar-links">
+            <a href="#" class="sidebar-link active">Home</a>
+            <a href="submit" class="sidebar-link">Submit News</a>
+            <a href="" class="sidebar-link">Profile</a>
+        </div>
+    </div>
+    
 
     <main>
         <section class="news-grid">
@@ -52,6 +68,7 @@
         </section>
     </main>
 
+
     <footer>
         <p>&copy 2025 AMC News</p>
         <div class="links">
@@ -61,6 +78,13 @@
                     class="fa-brands fa-instagram"></i></a>
         </div>
     </footer>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('visible');
+        }
+
+    </script>
 </body>
 
 </html>

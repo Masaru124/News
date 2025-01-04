@@ -27,8 +27,7 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
 }
-
-/* Header Styles */
+/* General Header Styles */
 .header {
     position: sticky;
     top: 0;
@@ -52,9 +51,101 @@ body {
     font-weight: 500;
     letter-spacing: 2px;
     margin: 0;
-
 }
 
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 220px;
+    background-color: white;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.sidebar.visible {
+    transform: translateX(0);
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sidebar-header h2 {
+    margin: 0;
+    font-size: 18px;
+    color: white;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar-links a{
+    color: black;
+    padding: 10px;
+}
+.sidebar-link {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.sidebar-link.active {
+    color: #006994;
+}
+
+/* Menu Toggle Button */
+.menu-toggle {
+    padding: 0; /* Ensure it stays at the top and visible */
+    top: 0;
+    left: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: rgb(8, 135, 174);
+    cursor: pointer;
+    display: none; /* Hidden on larger screens */
+}
+
+/* Show the toggle button on smaller screens */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    .nav-container{
+        height: 40px;
+    }
+}
+
+/* Ensure the sidebar does not overlap */
+.sidebar.visible {
+    z-index: 1200; /* Ensure it appears above the menu */
+}
+
+
+/* Nav Container */
 .nav-container {
     padding: 10px 30px;
     background-color: var(--white);
@@ -63,13 +154,17 @@ body {
 .nav-links {
     width: 100%;
     display: flex;
-    
     gap: 20px;
     justify-content: flex-end;
 }
 
 .nav-links a {
     font-size: 14px;
+}
+
+.nav-links a i {
+    font-size: 28px;
+    color: #1d4ed8;
 }
 
 .logo {
@@ -87,12 +182,23 @@ body {
     transition: var(--transition);
 }
 
-.nav-link:hover,
+.nav-link:hover,   
 .nav-link.active {
     background-color: #006994;
     color: var(--white);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Hide navigation links on mobile view */
+    }
+
+    .menu-toggle {
+        display: block; /* Show the menu toggle button */
+    }
 }
 
 /* Hero Section */
@@ -168,8 +274,9 @@ body {
 }
 
 .articles-container {
+    
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1rem;
 }
 
@@ -188,18 +295,19 @@ body {
 }
 
 .news-content {
-    padding: 1.5rem;
+    padding: 1rem;
 }
 
 .news-title {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
+    font-size: 1rem;
+    margin-bottom: 0.7rem;
     color: var(--text-color);
 }
 
 .news-excerpt {
     color: var(--light-text);
-    margin-bottom: 1rem;
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
 }
 
 .news-meta {
@@ -211,8 +319,9 @@ body {
 }
 
 .read-more {
+    font-size: 0.7rem;
     display: inline-block;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.5rem;
     background-color: var(--primary-color);
     color: var(--white);
     text-decoration: none;
@@ -482,12 +591,7 @@ footer p {
     color: white;
     text-decoration: none;
 }
-.news-title .news-excerpt .news-date .news-category{
-    font-size: 19px;
-}
 
-
-/* Animations */
 @keyframes fadeInDown {
     from {
         opacity: 0;
@@ -514,6 +618,8 @@ footer p {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+
+    
     .hero-title {
         font-size: 2rem;
     }
