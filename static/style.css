@@ -201,51 +201,6 @@ body {
     }
 }
 
-/* Hero Section */
-.hero {
-    background: linear-gradient(rgba(37, 99, 235, 0.9), rgba(29, 78, 216, 0.9)),
-        url('/images/bg.jpg');
-    background-size: cover;
-    background-position: center;
-    padding: 4rem 2rem;
-    text-align: center;
-    color: var(--white);
-}
-
-.hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.hero-title {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    animation: fadeInDown 0.8s ease;
-}
-
-.hero-subtitle {
-    font-size: 1.2rem;
-    opacity: 0.9;
-    animation: fadeInUp 0.8s ease;
-}
-
-.cta-button {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background-color: var(--primary-color);
-    color: var(--white);
-    text-decoration: none;
-    border-radius: 0.5rem;
-    font-weight: 500;
-    transition: var(--transition);
-    margin-top: 1rem;
-}
-
-.cta-button:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
 
 /* News Grid */
 .news-grid {
@@ -277,7 +232,13 @@ body {
     
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    height: auto;
     gap: 1rem;
+}
+
+summary{
+    padding-bottom: 10px;
+    font-size: 15px;
 }
 
 .news-card {
@@ -646,12 +607,6 @@ footer p {
     .submitnews {
         margin: 2rem 1rem;
         padding: 1.5rem;
-    }
-    .welcome {
-        font-size: 1rem;
-        font-weight: bold;
-        color: #ffffff;
-        animation: pop-in 1s forwards;
     }
 
     footer {

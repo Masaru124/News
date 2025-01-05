@@ -28,7 +28,7 @@
             </div>
         </nav>
     </header>
-    
+
     <!-- Sidebar -->
     <div id="sidebar" class="sidebar">
         <div class="sidebar-header">
@@ -41,7 +41,7 @@
             <a href="" class="sidebar-link">Profile</a>
         </div>
     </div>
-    
+
 
     <main>
         <section class="news-grid">
@@ -53,20 +53,27 @@
             <div class="articles-container">
                 {% for article in articles %}
                 <article class="news-card">
+
                     <div class="news-content">
                         <h3 class="news-title">{{ article.title }}</h3>
-                        <p class="news-excerpt">{{ article.content|truncatewords:30 }}</p>
+
                         <div class="news-meta">
                             <span class="news-date">{{ article.created_at|date:"F d, Y" }}</span>
                             <span class="news-category">{{ article.category }}</span>
                         </div>
-                        <a href="{% url 'article_detail' article.id %}" class="read-more">Read More</a>
+                        <!-- <a href="{% url 'article_detail' article.id %}" class="read-more">Read More</a> -->
+                        <details>
+                            <summary>Read More</summary>
+                            <p class="news-excerpt">{{ article.content|truncatewords:30 }}</p>
+                        </details>
                     </div>
                 </article>
                 {% endfor %}
             </div>
         </section>
     </main>
+
+
 
 
     <footer>
