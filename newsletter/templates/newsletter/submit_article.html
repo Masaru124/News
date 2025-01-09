@@ -48,12 +48,12 @@
                 <h2 class="title">Submit an Article</h2>
 
                 <div class="form-group">
-                    <label for="title">Article Title</label><br>
+                    <label for="title"></label><br>
                     <input type="text" name="title" id="title" required placeholder="Enter article title">
                 </div>
 
                 <div class="form-group">
-                    <label for="category">Category</label><br>
+                    <label for="category"></label><br>
                     <select name="category" id="category" required>
                         <option value="" disabled selected>Select a category</option>
                         {% for category in form.category.field.queryset %}
@@ -63,7 +63,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="content">Content</label><br>
+                    <label for="content"></label><br>
                     <textarea name="content" id="content" required rows="8"
                         placeholder="Write your article content here..."></textarea>
                 </div>

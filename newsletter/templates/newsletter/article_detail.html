@@ -30,14 +30,14 @@
 
     <div class="artcont">
         <h2>{{ article.title }}</h2>
+        <p>{{ article.content|safe }}</p>
         <p>By: {{ article.author.username }}</p>
         <p>Category: {{ article.category.name }}</p>
-        <p>{{ article.content|safe }}</p>
-        <p>Published on: {{ article.published_date }}</p>
+        <p>Published on: {{ article.created_at|date:"F d, Y" }}</p>
         <button> <a href="{% url 'index' %}">Back to Home</a>
         </button>
     </div>
-
+    
     <footer>
         <p>&copy 2025 AMC News</p>
         <div class="links">

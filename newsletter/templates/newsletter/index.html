@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMC Engineering College News</title>
+    <title>AMCEC News-Bannerghatta</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
         integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
@@ -56,16 +56,16 @@
 
                     <div class="news-content">
                         <h3 class="news-title">{{ article.title }}</h3>
-
-                        <div class="news-meta">
+                        <p class="news-excerpt">{{ article.content|truncatewords:30 }}</p>
+                        <!-- <div class="news-meta">
                             <span class="news-date">{{ article.created_at|date:"F d, Y" }}</span>
                             <span class="news-category">{{ article.category }}</span>
-                        </div>
-                        <!-- <a href="{% url 'article_detail' article.id %}" class="read-more">Read More</a> -->
-                        <details>
+                        </div> -->
+                        <a href="{% url 'article_detail' article.id %}" class="read-more">Read More</a>
+                        <!-- <details>
                             <summary>Read More</summary>
-                            <p class="news-excerpt">{{ article.content|truncatewords:30 }}</p>
-                        </details>
+                            
+                        </details> -->
                     </div>
                 </article>
                 {% endfor %}
@@ -73,8 +73,11 @@
         </section>
     </main>
 
-
-
+    <div class="floating-button">
+        <p>Click to <br> submit news</p>
+        <button><a href="submit"><i class="fa fa-plus"></i></a>
+        </button>
+    </div>
 
     <footer>
         <p>&copy 2025 AMC News</p>
