@@ -7,21 +7,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Article Detail</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">  <!-- Link to the main stylesheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
         integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        crossorigin="anonymous" referrerpolicy="no-referrer" />  <!-- Font Awesome for icons -->
 </head>
 
 <body>
     <div class="amc">
-        <h1>AMC Engineering College</h1>
+        <h1>AMC Engineering College</h1>  <!-- Main heading -->
     </div>
     <header class="header">
         <nav class="nav-container">
             <div class="nav-links">
-                <img class="logo" src="{% static 'images/amc.png' %}" alt="My Image">
+                <img class="logo" src="{% static 'images/amc.png' %}" alt="My Image">  <!-- Logo -->
                 <a href="{% url 'index' %}" class="nav-link active">Home</a>
                 <a href="{% url 'submit_article' %}" class="nav-link">Submit News</a>
             </div>
@@ -29,17 +28,40 @@
     </header>
 
     <div class="artcont">
-        <h2>{{ article.title }}</h2>
-        <p>{{ article.content|safe }}</p>
-        <p>By: {{ article.author.username }}</p>
-        <p>Category: {{ article.category.name }}</p>
-        <p>Published on: {{ article.created_at|date:"F d, Y" }}</p>
-        <button> <a href="{% url 'index' %}">Back to Home</a>
-        </button>
+        <h2>{{ article.title }}</h2>  <!-- Article title -->
+        <p>{{ article.content|safe }}</p>  <!-- Article content -->
+        <p>By: {{ article.author.username }}</p>  <!-- Author of the article -->
+        <p>Category: {{ article.category.name }}</p>  <!-- Category of the article -->
+        <p>Published on: {{ article.created_at|date:"F d, Y" }}</p>  <!-- Publication date -->
+        <p>Likes: {{ article.likes_count }}</p>  <!-- Display likes count -->
+        <form method="post" action="{% url 'like_article' article.id %}">  <!-- Form for liking the article -->
+            {% csrf_token %}
+            <button type="submit">Like</button>  <!-- Like button -->
+        </form>
+        <button> <a href="{% url 'index' %}">Back to Home</a></button>  <!-- Back button -->
     </div>
-    
+
+    <!-- Comments Section -->
+    <div class="comments-section">
+        <h3>Comments</h3>
+        <form method="post" action="{% url 'submit_comment' article.id %}">  <!-- Form for submitting comments -->
+            {% csrf_token %}
+            <textarea name="content" required placeholder="Add your comment here..."></textarea>  <!-- Comment input -->
+            <button type="submit">Submit Comment</button>  <!-- Submit button -->
+        </form>
+
+        <div class="existing-comments">
+            {% for comment in article.comments.all %}  <!-- Loop through existing comments -->
+                <div class="comment">
+                    <p><strong>{{ comment.author.username }}</strong>: {{ comment.content }}</p>  <!-- Display comment -->
+                    <p><em>Posted on: {{ comment.created_at|date:"F d, Y" }}</em></p>  <!-- Comment date -->
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
     <footer>
-        <p>&copy 2025 AMC News</p>
+        <p>&copy 2025 AMC News</p>  <!-- Footer content -->
         <div class="links">
             <a href=""><i class="fa-brands fa-facebook"></i></a>
             <a href=""><i class="fa-brands fa-twitter"></i></a>
