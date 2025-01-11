@@ -3,7 +3,7 @@ from .models import Article, Category
 from .forms import ArticleForm  
 
 def welcome(request):
-    return render(request, 'newsletter/welcome.html')
+      return render(request, 'newsletter/welcome.html')
 
 def home(request, slug=None):
     if slug:
