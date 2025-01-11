@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Article, Category
 from .forms import ArticleForm  
+from django.contrib.auth.models import User  # Import User model
 
 def welcome(request):
-      return render(request, 'newsletter/welcome.html')
+    return render(request, 'newsletter/welcome.html')
 
 def home(request, slug=None):
     if slug:
@@ -20,8 +21,16 @@ def submit_article(request):
         if form.is_valid():
             article = form.save(commit=False)
             article.is_approved = False
+            
+            # Check if the article is new or old
             if request.user.is_authenticated:
                 article.author = request.user
+            else:
+                # If the article is old and has no author, set it to admin
+                if not article.author_id:  # Assuming author_id is None for old articles
+                    admin_user = User.objects.get(username='admin')  # Fetch the admin user
+                    article.author = admin_user
+            
             article.save()
             return render(request, 'newsletter/success.html', {
                 'message': 'Your article has been submitted successfully and is pending approval.'

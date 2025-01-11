@@ -11,3 +11,11 @@ class UserRegistrationForm(forms.ModelForm):
 class UserLoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
+
+class UserProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'bio']  # Include bio field
+
+class ForgotPasswordForm(forms.Form):
+    email = forms.EmailField()

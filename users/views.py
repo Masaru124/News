@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
-from .forms import UserRegistrationForm, UserLoginForm
+from .forms import UserRegistrationForm, UserLoginForm, UserProfileEditForm, ForgotPasswordForm
 
 def register(request):
     if request.method == 'POST':
@@ -31,6 +31,26 @@ def login_view(request):
 
 def profile(request):
     return render(request, 'users/profile.html', {'user': request.user})
+
+def edit_profile(request):
+    if request.method == 'POST':
+        form = UserProfileEditForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = UserProfileEditForm(instance=request.user)
+    return render(request, 'users/edit_profile.html', {'form': form})
+
+def forgot_password(request):
+    if request.method == 'POST':
+        form = ForgotPasswordForm(request.POST)
+        if form.is_valid():
+            # Logic for handling password reset (e.g., sending an email)
+            return redirect('login')
+    else:
+        form = ForgotPasswordForm()
+    return render(request, 'users/forgot_password.html', {'form': form})
 
 def logout_view(request):
     logout(request)
