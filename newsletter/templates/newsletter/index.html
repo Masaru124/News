@@ -23,7 +23,7 @@
             <div class="nav-links">
                 <img class="logo" src="{% static 'images/amc.png' %}" alt="Logo">
                 <a href="#" class="nav-link active">Home</a>
-                <a href="submit" class="nav-link">Submit News</a>
+                <a href="{% url 'submit_article' %}" class="nav-link">Submit News</a>
                 {% if user.is_authenticated %}
                     <a href="{% url 'profile' %}" class="nav-link">Profile</a>
                 {% else %}
@@ -42,7 +42,7 @@
         </div>
         <div class="sidebar-links">
             <a href="#" class="sidebar-link active">Home</a>
-            <a href="submit" class="sidebar-link">Submit News</a>
+            <a href="{% url 'submit_article' %}" class="sidebar-link">Submit News</a>
             {% if user.is_authenticated %}
                 <a href="{% url 'profile' %}" class="nav-link">Profile</a>
             {% else %}
@@ -76,7 +76,7 @@
 
     <div class="floating-button">
         <p>Click to <br> submit news</p>
-        <button><a href="submit"><i class="fa fa-plus"></i></a>
+        <button><a href="{% url 'submit_article' %}"><i class="fa fa-plus"></i></a>
         </button>
     </div>
 
