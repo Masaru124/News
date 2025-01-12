@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponseForbidden  
 from .models import Article, Category, Comment
 from .forms import ArticleForm  
 from django.contrib.auth.models import User  # Import User model

@@ -1,18 +1,21 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/users.css' %}">
     <title>User Profile</title>
 </head>
 <body>
     <h1>User Profile</h1>
     <p>Username: {{ user.username }}</p>
     <p>Email: {{ user.email }}</p>
-    <p>Bio: {{ user.bio }}</p>  <!-- Display bio field -->
+    <p>Bio: {{ user.bio }}</p> 
 
-    <a href="{% url 'edit_profile' %}">Edit Profile</a>  <!-- Link to edit profile -->
-
+    <a href="{% url 'edit_profile' %}">Edit Profile</a> 
+    <a href="{% url 'index' %}" class="nav-link active">Home</a>
     <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
         <button type="submit">Logout</button>

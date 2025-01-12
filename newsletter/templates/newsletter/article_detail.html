@@ -36,7 +36,7 @@
         <p>Likes: {{ article.likes_count }}</p>  <!-- Display likes count -->
         <form method="post" action="{% url 'like_article' article.id %}">  <!-- Form for liking the article -->
             {% csrf_token %}
-            <button type="submit">Like</button>  <!-- Like button -->
+            <button type="submit"><i class="fa-solid fa-heart"></i> Like</button>  <!-- Like button with icon -->
         </form>
         <button> <a href="{% url 'index' %}">Back to Home</a></button>  <!-- Back button -->
     </div>
