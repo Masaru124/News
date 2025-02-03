@@ -2,23 +2,75 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/users.css' %}">
     <title>User Profile</title>
 </head>
-<body>
-    <h1>User Profile</h1>
-    <p>Username: {{ user.username }}</p>
-    <p>Email: {{ user.email }}</p>
-    <p>Bio: {{ user.bio }}</p> 
 
-    <a href="{% url 'edit_profile' %}">Edit Profile</a> 
-    <a href="{% url 'index' %}" class="nav-link active">Home</a>
-    <form action="{% url 'logout' %}" method="post">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-    </form>
+<body>
+
+    <div class="amc">
+        <h1>AMC Engineering College</h1>
+    </div>
+    <header class="header">
+        <nav class="nav-container">
+            <button class="menu-toggle" onclick="toggleSidebar()">☰</button> <!-- Menu Toggle -->
+            <div class="nav-links">
+                <img class="logo" src="{% static 'images/amc.png' %}" alt="Logo">
+                <a href="#" class="nav-link active">Home</a>
+                <a href="{% url 'submit_article' %}" class="nav-link">Submit News</a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}" class="nav-link">Profile</a>
+                {% else %}
+                <a href="{% url 'login' %}" class="nav-link">Login</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>Menu</h2>
+            <button class="close-btn" onclick="toggleSidebar()">✖</button>
+        </div>
+        <div class="sidebar-links">
+            <a href="#" class="sidebar-link active">Home</a>
+            <a href="{% url 'submit_article' %}" class="sidebar-link">Submit News</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}" class="nav-link">Profile</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="nav-link">Login</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="PROFILE-CONTAINER">
+        <h1>User Profile</h1>
+        <p>Username: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Bio: {{ user.bio }}</p>
+
+        <a href="{% url 'edit_profile' %}">Edit Profile</a>
+        <a href="{% url 'index' %}" class="nav-link active">Home</a>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy 2025 AMC News</p>
+        <div class="links">
+            <a href=""><i class="fa-brands fa-facebook"></i></a>
+            <a href=""><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.instagram.com/amc.education?igsh=MTg3MndnemdtYjJhZg=="><i
+                    class="fa-brands fa-instagram"></i></a>
+        </div>
+    </footer>
 </body>
+
 </html>
