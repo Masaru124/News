@@ -168,7 +168,6 @@ body {
 
 .articles-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
 }
 
@@ -463,6 +462,7 @@ footer {
     background-color: #006994;
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     color: white;
@@ -517,9 +517,10 @@ footer p {
         font-size: 1rem;
     }
 
-    .section-title h2{
+    .section-title h2 {
         font-size: 22px;
     }
+
     .news-grid {
         padding: 0 1rem;
     }
@@ -528,7 +529,7 @@ footer p {
         grid-template-columns: 1fr;
     }
 
-    .news-title .news-excerpt .news-date .news-category{
+    .news-title .news-excerpt .news-date .news-category {
         font-size: 16px;
     }
 
@@ -536,6 +537,7 @@ footer p {
         margin: 2rem 1rem;
         padding: 1.5rem;
     }
+
     .welcome {
         font-size: 2rem;
         font-weight: bold;
