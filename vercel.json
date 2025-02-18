@@ -1,19 +1,36 @@
 {
     "version": 2,
     "builds": [
-      {
-        "src": "manage.py",
-        "use": "@vercel/python"
-      }
+        {
+            "src": "news/wsgi.py",
+            "use": "@vercel/python"
+        },
+        {
+            "src": "staticfiles/",
+            "use": "@vercel/static"
+        }
     ],
     "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "manage.py"
-      }
+        {
+            "src": "/static/(.*)",
+            "dest": "staticfiles/$1"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "news/wsgi.py"
+        }
     ],
+    "build": {
+        "env": {
+            "PYTHON_VERSION": "3.9",
+            "DJANGO_SETTINGS_MODULE": "news.settings",
+            "DISABLE_COLLECTSTATIC": "0"
+        }
+    },
     "env": {
-      "DATABASE_URL": "your_database_url",
-      "SECRET_KEY": "your_secret_key"
+        "DATABASE_URL": "@database_url",
+        "SECRET_KEY": "@django_secret_key",
+        "DEBUG": "False",
+        "ALLOWED_HOSTS": ".vercel.app,.now.sh"
     }
-  }
+}
