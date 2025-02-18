@@ -1,36 +1,19 @@
 {
     "version": 2,
     "builds": [
-        {
-            "src": "news/wsgi.py",
-            "use": "@vercel/python"
-        },
-        {
-            "src": "staticfiles/",
-            "use": "@vercel/static"
-        }
+      {
+        "src": "manage.py",
+        "use": "@vercel/python"
+      }
     ],
     "routes": [
-        {
-            "src": "/static/(.*)",
-            "dest": "staticfiles/$1"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "news/wsgi.py"
-        }
+      {
+        "src": "/(.*)",
+        "dest": "manage.py"
+      }
     ],
-    "build": {
-        "env": {
-            "PYTHON_VERSION": "3.9",
-            "DJANGO_SETTINGS_MODULE": "news.settings",
-            "DISABLE_COLLECTSTATIC": "0"
-        }
-    },
     "env": {
-        "DATABASE_URL": "postgresql://neondb_owner:yTfQnlbD1UE7@ep-plain-math-a5ejx82x.us-east-2.aws.neon.tech/neondb?sslmode=require",
-        "SECRET_KEY": "x8d0jxlk#rzo(8-d13h#ko0uc1l!un#2yni7d)_mg66rn3ws76",
-        "DEBUG": "False",
-        "ALLOWED_HOSTS": ".vercel.app,.now.sh"
+      "DATABASE_URL": "your_database_url",
+      "SECRET_KEY": "your_secret_key"
     }
-}
+  }
