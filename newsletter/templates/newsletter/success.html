@@ -14,18 +14,21 @@
 </head>
 <body>
     <header class="header">
-        <div class="amc">
-            <h1>AMC Engineering College</h1>
-        </div>
         <nav class="nav-container">
-            <div class="nav-links">
-                <img class="logo" src="{% static 'images/amc.png' %}" alt="My Image">
-
+          <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+          <div class="nav-title">
+            <h1>AMC News</h1>
+          </div>
+          <div class="nav-links">
+            <ul>
                 <a href="{% url 'index' %}" class="nav-link">Home</a>
                 <a href="{% url 'submit_article' %}" class="nav-link">Submit News</a>
-            </div>
+            </ul>
+          </div>
         </nav>
-    </header>
+      </header>
+  
+      <hr />
 
     <main>
         <div class="success-message">
@@ -41,13 +44,36 @@
     </main>
 
     <footer>
-        <p>&copy 2025 AMC News</p>
-        <div class="links">
-            <a href=""><i class="fa-brands fa-facebook"></i></a>
-            <a href=""><i class="fa-brands fa-twitter"></i></a>
-            <a href="https://www.instagram.com/amc.education?igsh=MTg3MndnemdtYjJhZg=="><i
-                    class="fa-brands fa-instagram"></i></a>
+        <div class="footer-container">
+          <!-- Social Media Section -->
+  
+          <!-- Quick Links Section -->
+          <div class="footer-section quick-links">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section social-links">
+            <h3>Follow Us</h3>
+            <div class="social-icons">
+              <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+              <a
+                href="https://www.instagram.com/amc.education?igsh=MTg3MndnemdtYjJhZg=="
+              >
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+            </div>
+          </div>
         </div>
-    </footer>
+  
+        <!-- Copyright Section -->
+        <div class="footer-bottom">
+          <p>&copy; 2025 AMC News | All rights reserved.</p>
+        </div>
+      </footer>
 </body>
 </html>

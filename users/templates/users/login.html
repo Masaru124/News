@@ -4,31 +4,42 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/users.css' %}">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/users.css' %}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
         integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>User Login</title>
 </head>
 
 <body>
-    <div class="amc">
-        <h1>AMC Engineering College</h1>
-    </div>
     <header class="header">
         <nav class="nav-container">
-            <button class="menu-toggle" onclick="toggleSidebar()">☰</button> <!-- Menu Toggle -->
+            <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+            <div class="nav-title">
+                <h1>AMC News</h1>
+            </div>
             <div class="nav-links">
-                <img class="logo" src="{% static 'images/amc.png' %}" alt="Logo">
-                <a href="#" class="nav-link active">Home</a>
-                <a href="{% url 'submit_article' %}" class="nav-link">Submit News</a>
-                {% if user.is_authenticated %}
-                <a href="{% url 'profile' %}" class="nav-link">Profile</a>
-                {% else %}
-                <a href="{% url 'login' %}" class="nav-link">Login</a>
-                {% endif %}
+                <ul>
+                    <li>
+                        <a href="#" class="nav-link active">Home</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'submit_article' %}" class="nav-link">Submit News</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'profile' %}" class="nav-link">Profile</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}" class="nav-link">Login</a></li>
+                    {% endif %}
+                </ul>
             </div>
         </nav>
     </header>
@@ -53,14 +64,22 @@
         <h2>Login</h2>
         <form method="post">
             {% csrf_token %}
-            <br>
+            <br />
             {{ form.as_p }}
             <button type="submit">Login</button>
         </form>
-        <p>Don't have an account ? <a href="{% url 'register' %}"> Register here.</a></p>
+        <p>
+            Don't have an account ?
+            <a href="{% url 'register' %}"> Register here.</a>
+        </p>
     </div>
 
-   
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("visible");
+        }
+    </script>
 </body>
 
 </html>
