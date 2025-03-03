@@ -30,6 +30,7 @@ ALLOWED_HOSTS = [
     '54.191.253.12',
     '44.226.122.3',
     '127.0.0.1',
+    'localhost'
 ]
 
 INSTALLED_APPS = [

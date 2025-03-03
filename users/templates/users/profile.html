@@ -8,25 +8,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/users.css' %}">
     <title>User Profile</title>
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
 
-    <div class="amc">
-        <h1>AMC Engineering College</h1>
-    </div>
     <header class="header">
         <nav class="nav-container">
-            <button class="menu-toggle" onclick="toggleSidebar()">☰</button> <!-- Menu Toggle -->
+            <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+            <div class="nav-title">
+                <h1>AMC News</h1>
+            </div>
             <div class="nav-links">
-                <img class="logo" src="{% static 'images/amc.png' %}" alt="Logo">
-                <a href="#" class="nav-link active">Home</a>
-                <a href="{% url 'submit_article' %}" class="nav-link">Submit News</a>
-                {% if user.is_authenticated %}
-                <a href="{% url 'profile' %}" class="nav-link">Profile</a>
-                {% else %}
-                <a href="{% url 'login' %}" class="nav-link">Login</a>
-                {% endif %}
+                <ul>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'submit_article' %}" class="nav-link">Submit News</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="{% url 'profile' %}" class="nav-link">Profile</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a href="{% url 'login' %}" class="nav-link">Login</a>
+                    </li>
+                    {% endif %}
+                </ul>
             </div>
         </nav>
     </header>
@@ -64,6 +79,18 @@
 
     <footer>
         <div class="footer-container">
+
+            <!-- Quick Links Section -->
+            <div class="footer-section quick-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+
             <!-- Social Media Section -->
             <div class="footer-section social-links">
                 <h3>Follow Us</h3>
@@ -75,26 +102,8 @@
                     </a>
                 </div>
             </div>
-    
-            <!-- Quick Links Section -->
-            <div class="footer-section quick-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-    
-            <!-- Contact Info Section -->
-            <div class="footer-section contact-info">
-                <h3>Contact Us</h3>
-                <p><i class="fa-solid fa-envelope"></i> contact@amcnews.com</p>
-                <p><i class="fa-solid fa-phone"></i> +1 234 567 890</p>
-            </div>
         </div>
-    
+
         <!-- Copyright Section -->
         <div class="footer-bottom">
             <p>&copy; 2025 AMC News | All rights reserved.</p>
