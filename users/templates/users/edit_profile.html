@@ -19,7 +19,7 @@
             <button class="menu-toggle" onclick="toggleSidebar()">☰</button> <!-- Menu Toggle -->
             <div class="nav-links">
                 <img class="logo" src="{% static 'images/amc.png' %}" alt="Logo">
-                <a href="#" class="nav-link active">Home</a>
+                <a href="{% url 'index' %}" class="nav-link active">Home</a>
                 <a href="{% url 'submit_article' %}" class="nav-link">Submit News</a>
                 {% if user.is_authenticated %}
                 <a href="{% url 'profile' %}" class="nav-link">Profile</a>
