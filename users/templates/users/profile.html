@@ -8,9 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/users.css' %}">
     <title>User Profile</title>
-    <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
     integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -27,7 +26,7 @@
             <div class="nav-links">
                 <ul>
                     <li class="nav-item">
-                        <a href="/home" class="nav-link active">Home</a>
+                        <a href="{% url 'index' %}" class="nav-link active">Home</a>
                     </li>
                     <li class="nav-item">
                         <a href="{% url 'submit_article' %}" class="nav-link">Submit News</a>
@@ -53,7 +52,7 @@
             <button class="close-btn" onclick="toggleSidebar()">✖</button>
         </div>
         <div class="sidebar-links">
-            <a href="/home" class="sidebar-link active">Home</a>
+            <a href="{% url 'index' %}" class="nav-link active">Home</a>
             <a href="{% url 'submit_article' %}" class="sidebar-link">Submit News</a>
             {% if user.is_authenticated %}
             <a href="{% url 'profile' %}" class="nav-link">Profile</a>
@@ -63,52 +62,32 @@
         </div>
     </div>
 
-    <div class="PROFILE-CONTAINER">
-        <h1>User Profile</h1>
-        <p>Username: {{ user.username }}</p>
-        <p>Email: {{ user.email }}</p>
-        <p>Bio: {{ user.bio }}</p>
+    <div class="profile-container1">
+        <div class="profile-header">
+            <div class="profile-pic">
+                <img src="https://images.unsplash.com/photo-1735528655501-cf671a3323c3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw2fHx8ZW58MHx8fHx8" alt="Profile Picture">
+            </div>
+            <div class="profile-info">
+                <h2>{{ user.username }}</h2>
+                <p class="profile-email">{{ user.email }}</p>
+                <p class="profile-bio">{{ user.bio }}</p>
 
-        <a href="{% url 'edit_profile' %}">Edit Profile</a>
-        <a href="{% url 'index' %}" class="nav-link active">Home</a>
-        <form action="{% url 'logout' %}" method="post">
-            {% csrf_token %}
-            <button type="submit">Logout</button>
-        </form>
+                <div class="profile-actions">
+
+                    <a href="{% url 'edit_profile' %}" class="btn edit-btn">Edit Profile</a>
+                    <a href="{% url 'index' %}" class="btn home-btn">Home</a>
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn logout-btn">Logout</button>
+                    </form>
+                </div>
+
+                
+            </div>
+        </div>
     </div>
 
-    <footer>
-        <div class="footer-container">
 
-            <!-- Quick Links Section -->
-            <div class="footer-section quick-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="/about">About Us</a></li>
-                    <li><a href="/privacy">Privacy Policy</a></li>
-                    <li><a href="/terms">Terms of Service</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                </ul>
-            </div>
-
-            <!-- Social Media Section -->
-            <div class="footer-section social-links">
-                <h3>Follow Us</h3>
-                <div class="social-icons">
-                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/amc.education?igsh=MTg3MndnemdtYjJhZg==">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Copyright Section -->
-        <div class="footer-bottom">
-            <p>&copy; 2025 AMC News | All rights reserved.</p>
-        </div>
-    </footer>
 </body>
 
 </html>

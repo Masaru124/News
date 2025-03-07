@@ -52,8 +52,10 @@ body {
   display: flex;
   padding: 20px 150px;
   justify-content: space-between;
+  align-items: center;
   background-color: hsl(197, 100%, 30%);
 }
+
 
 .nav-links ul {
   display: flex;
@@ -248,107 +250,264 @@ body {
   display: none;
 }
 
-.PROFILE-CONTAINER {
-  margin: 20px auto;
-  max-width: 420px;
-  padding: 25px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  animation: fadeIn 0.8s ease-in-out;
-  margin-bottom: 100px;
-}
-
-/* Header Styling */
-.PROFILE-CONTAINER h1 {
-  color: #1b4f72;
-  font-size: 26px;
-  font-weight: 600;
-  margin-bottom: 5px;
-  padding: 10px;
-}
-
-/* Paragraph Styling */
-.PROFILE-CONTAINER p {
+/* Profile Container */
+.profile-container {
+  /* background: white; */
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 10px;
+  width: 800px;
   display: flex;
   flex-direction: column;
-  padding: 5px;
-  font-size: 17px;
-  color: #555;
-  margin: 10px 0;
-  font-weight: 500;
-  text-align: left;
+  align-items: center;
+  gap: 20px;
 }
 
-.PROFILE-CONTAINER form label {
-  align-items: left;
-  border-radius: 50px;
-  border: none;
+
+/* Profile Picture Upload */
+.profile-picture {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.PROFILE-CONTAINER form input {
-  width: 250px;
+.profile-picture img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+.profile-picture input {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* Form Styling */
+.profile-form {
+  flex-grow: 1;
+}
+
+.form-group p{
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group p label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+  margin-bottom: 10px;
+  /* background-color: red; */
+}
+
+.profile-form input,
+.profile-form select,
+.profile-form textarea {
+  width: 100%;
   padding: 10px;
-  align-items: left;
-  border-radius: 50px;
-  border: 1px solid #3b82f6;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background: #f4f4f4;
 }
 
-.PROFILE-CONTAINER textarea {
-  border: 1px solid #1d4ed8;
+/* Button Group */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
 }
 
-/* Links Styling */
-.PROFILE-CONTAINER a {
-  display: inline-block;
-  padding: 12px 18px;
-  margin: 10px 5px;
+/* Buttons */
+.btn {
+  padding: 10px 20px;
+  border-radius: 5px;
   text-decoration: none;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 500;
-  border-radius: 8px;
-  transition: 0.3s ease-in-out;
-}
-
-/* Edit Profile Button */
-.PROFILE-CONTAINER a:first-of-type {
-  background: #2980b9;
-  box-shadow: 0px 5px 15px rgba(41, 128, 185, 0.3);
-}
-
-.PROFILE-CONTAINER a:first-of-type:hover {
-  background: #1b4f72;
-}
-
-/* Home Button */
-.PROFILE-CONTAINER .nav-link {
-  background: #27ae60;
-  box-shadow: 0px 5px 15px rgba(39, 174, 96, 0.3);
-}
-
-.PROFILE-CONTAINER .nav-link:hover {
-  background: #1e8449;
-}
-
-/* Logout Button */
-.PROFILE-CONTAINER form button {
-  background: #e74c3c;
-  color: #fff;
-  border: none;
-  padding: 12px 18px;
-  font-size: 16px;
-  font-weight: 500;
-  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
-  transition: 0.3s ease-in-out;
-  margin-top: 15px;
-  box-shadow: 0px 5px 15px rgba(231, 76, 60, 0.3);
+  transition: background 0.3s ease, opacity 0.3s ease;
 }
 
-.PROFILE-CONTAINER form button:hover {
-  background: #c0392b;
+/* Button Colors */
+.save-btn {
+  background-color: #006994;
+  color: white;
+  border: none;
+}
+
+.cancel-btn {
+  background-color: #ffffff;
+  color: #006994;
+  border: 2px solid #006994;
+}
+
+/* Hover Effects */
+.save-btn:hover {
+  background-color: #006994;
+}
+
+.cancel-btn:hover {
+  background-color: #006994;
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-container {
+      flex-direction: column;
+      width: 90%;
+  }
+
+  .button-group {
+      flex-direction: column;
+  }
+}
+
+.profile-container1 {
+  /* background: white; */
+  padding: 50px;
+  border-radius: 10px;
+  /* box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); */
+  width: 80%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+/* Profile Header */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+/* Profile Picture */
+.profile-pic img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ddd;
+}
+
+/* Profile Info */
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 60%;
+}
+
+/* Username and Edit Button */
+.top-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.profile-info h2 {
+  font-size: 28px;
+  color: #262626;
+  margin: 0;
+}
+
+.profile-email {
+  color: #8e8e8e;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.profile-bio {
+  font-size: 18px;
+  color: #333;
+  margin-top: 10px;
+}
+
+/* Profile Actions */
+.profile-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  width: 100%;
+  justify-content: center;
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, opacity 0.3s ease;
+  text-align: center;
+}
+
+/* Instagram-Styled Buttons */
+.edit-btn {
+  background-color: #0095f6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+}
+
+.edit-btn:hover {
+  background-color: #0077cc;
+}
+
+.home-btn {
+  background-color: white;
+  color: #0095f6;
+  border: 2px solid #0095f6;
+}
+
+.home-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.logout-btn {
+  background-color: #ed4956;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+}
+
+.logout-btn:hover {
+  background-color: #d43545;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-container {
+      width: 80%;
+  }
+
+  .profile-header {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .profile-info {
+      align-items: center;
+      width: 100%;
+  }
+
+  .profile-actions {
+      flex-direction: column;
+      width: 100%;
+  }
 }
 
 /* Footer Styles */

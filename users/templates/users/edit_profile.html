@@ -7,25 +7,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/users.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+
     <title>Edit Profile</title>
 </head>
 
 <body>
-    <div class="amc">
-        <h1>AMC Engineering College</h1>
-    </div>
     <header class="header">
         <nav class="nav-container">
-            <button class="menu-toggle" onclick="toggleSidebar()">☰</button> <!-- Menu Toggle -->
+            <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+            <div class="nav-title">
+                <h1>AMC News</h1>
+            </div>
             <div class="nav-links">
-                <img class="logo" src="{% static 'images/amc.png' %}" alt="Logo">
-                <a href="{% url 'index' %}" class="nav-link active">Home</a>
-                <a href="{% url 'submit_article' %}" class="nav-link">Submit News</a>
-                {% if user.is_authenticated %}
-                <a href="{% url 'profile' %}" class="nav-link">Profile</a>
-                {% else %}
-                <a href="{% url 'login' %}" class="nav-link">Login</a>
-                {% endif %}
+                <ul>
+                    <li class="nav-item">
+                        <a href="{% url 'index' %}" class="nav-link active">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'submit_article' %}" class="nav-link">Submit News</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="{% url 'profile' %}" class="nav-link">Profile</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a href="{% url 'login' %}" class="nav-link">Login</a>
+                    </li>
+                    {% endif %}
+                </ul>
             </div>
         </nav>
     </header>
@@ -37,7 +48,7 @@
             <button class="close-btn" onclick="toggleSidebar()">✖</button>
         </div>
         <div class="sidebar-links">
-            <a href="#" class="sidebar-link active">Home</a>
+            <a href="{% url 'index' %}" class="nav-link active">Home</a>
             <a href="{% url 'submit_article' %}" class="sidebar-link">Submit News</a>
             {% if user.is_authenticated %}
             <a href="{% url 'profile' %}" class="nav-link">Profile</a>
@@ -48,30 +59,26 @@
     </div>
 
 
-    <div class="PROFILE-CONTAINER">
-        <h1>Edit Profile</h1>
-        <form method="post">
+    <div class="profile-container">
+        <h3>Edit Profile</h3>
+        <form method="post" class="profile-form">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Save Changes</button>
-            <a href="{% url 'index' %}" class="nav-link active">Home</a>
-            <a href="{% url 'profile' %}" class="nav-link">Cancel</a>
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <div class="button-group">
+                <button type="submit" class="btn save-btn">Save Changes</button>
+                <a href="{% url 'index' %}" class="btn home-btn">Home</a>
+                <a href="{% url 'profile' %}" class="btn cancel-btn">Cancel</a>
+            </div>
         </form>
-        <!-- <div class="profile-a">
-            <a href="{% url 'index' %}" class="nav-link active">Home</a>
-            <a href="{% url 'profile' %}" class="nav-link">Cancel</a>
-        </div> -->
     </div>
-
-    <footer>
-        <p>&copy 2025 AMC News</p>
-        <div class="links">
-            <a href=""><i class="fa-brands fa-facebook"></i></a>
-            <a href=""><i class="fa-brands fa-twitter"></i></a>
-            <a href="https://www.instagram.com/amc.education?igsh=MTg3MndnemdtYjJhZg=="><i
-                    class="fa-brands fa-instagram"></i></a>
-        </div>
-    </footer>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('visible');
+        }
+    </script>
 </body>
 
 </html>
