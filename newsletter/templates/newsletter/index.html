@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_filters %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,9 +28,7 @@
       <div class="nav-links">
         <ul>
           <li><a href="{% url 'index' %}" class="nav-link active">Home</a></li>
-          <li>
-            <a href="{% url 'submit_article' %}" class="nav-link">Submit News</a>
-          </li>
+          <li><a href="{% url 'submit_article' %}" class="nav-link">Submit News</a></li>
           {% if user.is_authenticated %}
           <li><a href="{% url 'profile' %}" class="nav-link">Profile</a></li>
           {% else %}
@@ -66,25 +65,55 @@
         <div class="title-underline"></div>
       </div>
 
-      <div class="articles-container">
+      <div class="category-selection">
+        <form method="GET" action="{% url 'index' %}" onsubmit="return checkCategory()">
+          <label for="department">Select Department:</label>
+          <select name="department" id="department" onchange="this.form.submit()">
+            <option value="" {% if not selected_department %}selected{% endif %}>All Departments</option>
+            <option value="general" {% if selected_department == "general" %}selected{% endif %}>General</option>
+            <option value="cse" {% if selected_department == "cse" %}selected{% endif %}>CSE</option>
+            <option value="aiml" {% if selected_department == "aiml" %}selected{% endif %}>AIML</option>
+            <option value="cs-ds" {% if selected_department == "cs-ds" %}selected{% endif %}>CS-DS</option>
+          </select>
+        </form>
+
+        <form method="GET" action="{% url 'index' %}">
+          <label for="search">Search:</label>
+          <input type="text" name="search" id="search" placeholder="Search news..." value="{{ request.GET.search }}" />
+          <button type="submit">Search</button>
+        </form>
+
+        <form method="GET" action="{% url 'index' %}" onsubmit="return checkCategory()">
+          <label for="category">Select Category:</label>
+          <select name="category_slug" id="category" onchange="this.form.submit()">
+            <option value="" {% if not selected_category %}selected{% endif %}>All Categories</option>
+            {% for category in categories %}
+            <option value="{{ category.slug }}" {% if category.slug == selected_category %}selected{% endif %}>
+              {{ category.name }}
+            </option>
+            {% endfor %}
+          </select>
+        </form>
+      </div>
+
+      <div class="articles-container" id="articles-container">
         {% for article in articles %}
         <article class="news-card">
           <div class="news-content">
-            <h3 class="news-title">{{ article.title }}</h3>
-            <p class="news-excerpt">{{ article.content|truncatewords:30 }}</p>
+            <h3 class="news-title">{{ article.title|escape }}</h3>
+            <p class="news-excerpt">{{ article.content|truncatehtmlwords:30|safe }}</p>
             <a href="{% url 'article_detail' article.id %}" class="read-more">Read More</a>
           </div>
         </article>
+        {% empty %}
+        <p>No articles found in this category.</p>
         {% endfor %}
       </div>
     </section>
   </main>
 
   <div class="floating-button">
-    <p>
-      Click to<br />
-      submit news
-    </p>
+    <p>Click to<br />submit news</p>
     <button>
       <a href="{% url 'submit_article' %}"><i class="fa fa-plus"></i></a>
     </button>
@@ -92,41 +121,17 @@
 
   <footer>
     <div class="footer-container">
-      <!-- Social Media Section -->
-
-      <!-- Quick Links Section -->
-      <div class="footer-section quick-links">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="/about-us/">About Us</a></li>
-          <li><a href="/privacy-policy/">Privacy Policy</a></li>
-          <li><a href="/terms-of-service/">Terms of Service</a></li>
-          <li><a href="/contact/">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-section social-links">
-        <h3>Follow Us</h3>
-        <div class="social-icons">
-          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-          <a href="https://www.instagram.com/amc.education?igsh=MTg3MndnemdtYjJhZg==">
-            <i class="fa-brands fa-instagram"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Copyright Section -->
-    <div class="footer-bottom">
-      <p>&copy; 2025 AMC News | All rights reserved.</p>
+      <!-- Footer Sections -->
     </div>
   </footer>
 
   <script>
     function toggleSidebar() {
-      const sidebar = document.getElementById("sidebar");
-      sidebar.classList.toggle("visible");
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
     }
   </script>
+
 </body>
 
 </html>

@@ -55,9 +55,9 @@
     </div>
 
     <div class="artcont">
-      <h2>{{ article.title }}</h2>
+      <h2><strong>{{ article.title }}</strong></h2>
       <!-- Article title -->
-      <p>{{ article.content|safe }}</p>
+      <p>{{ article.content|escape }}</p>
       <!-- Article content -->
       <p>By: {{ article.author.username }}</p>
       <!-- Author of the article -->

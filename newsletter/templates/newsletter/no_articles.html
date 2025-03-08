@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No Articles Available</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>No Articles Available</h1>
+    </header>
+    <main>
+        <p>There are currently no articles available for this category. Please check back later or select a different category.</p>
+        <a href="{% url 'index' %}">Go back to Home</a>
+    </main>
+</body>
+</html>
