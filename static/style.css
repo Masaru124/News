@@ -11,7 +11,7 @@
   --transition: all 0.3s ease;
 }
 
-/* @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 * {
   margin: 0;
@@ -30,7 +30,6 @@ body {
   color: var(--text-color);
 }
 
-/* Sidebar Styles */
 .sidebar {
   position: fixed;
   top: 0;
@@ -124,7 +123,11 @@ body {
   background-color: hsl(197, 100%, 30%);
 }
 
-.nav-links{
+.nav-title h1 {
+  color: white;
+}
+
+.nav-links {
   padding: 0;
 }
 
@@ -250,7 +253,6 @@ section {
   transform: translateY(-5px);
 }
 
-/* Category Dropdown */
 select {
   width: 100%;
   padding: 0.75rem;
@@ -268,7 +270,6 @@ select:focus {
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-/* Admin Panel Styles */
 .admin-panel {
   max-width: 1200px;
   margin: 3rem auto;
@@ -329,7 +330,6 @@ select:focus {
   border-radius: 0.5rem;
 }
 
-/* Success Message Styles */
 .success-message {
   max-width: 700px;
   margin: 3rem auto;
@@ -437,7 +437,6 @@ select:focus {
   background-color: hsl(197, 100%, 30%);
 }
 
-/* Submit News Form */
 .submitnews {
   max-width: 700px;
   margin: 20px auto;
@@ -505,15 +504,12 @@ button:hover {
   transform: translateY(-2px);
 }
 
-/* Footer Styles */
 footer {
   background-color: hsl(197, 100%, 30%);
   color: #ffffff;
   padding: 30px 20px;
-  font-family: "Poppins", sans-serif;
 }
 
-/* Footer Container */
 .footer-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -523,15 +519,11 @@ footer {
   text-align: center;
 }
 
-/* Footer Sections */
 .footer-section h3 {
-  font-size: 18px;
   margin-bottom: 15px;
   color: #ffffff;
-  text-transform: uppercase;
 }
 
-/* Social Media Icons */
 .social-icons a {
   font-size: 22px;
   margin: 0 10px;
@@ -544,7 +536,6 @@ footer {
   transform: scale(1.2);
 }
 
-/* Quick Links */
 .quick-links ul {
   list-style: none;
   padding: 0;
@@ -557,7 +548,7 @@ footer {
 .quick-links ul li a {
   color: #ffffff;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 16px;
   transition: color 0.3s ease-in-out;
 }
 
@@ -565,13 +556,16 @@ footer {
   color: #000000;
 }
 
-/* Footer Bottom */
 .footer-bottom {
   text-align: center;
   margin-top: 30px;
   padding-top: 15px;
   border-top: 1px solid #ffffff;
-  font-size: 14px;
+  font-size: 16px;
+}
+
+.footer-bottom p {
+  padding: 5px;
 }
 
 @keyframes fadeInDown {
@@ -598,7 +592,6 @@ footer {
   }
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .nav-container {
     justify-content: space-between;
@@ -634,7 +627,8 @@ footer {
     font-size: 16px;
   }
 
-  .artcont ,.comments-section{
+  .artcont,
+  .comments-section {
     min-width: 300px;
     padding: 30px;
   }
@@ -679,9 +673,7 @@ footer {
     display: flex;
     flex-direction: column;
   }
-}
 
-@media (max-width: 768px) {
   .floating-button {
     position: fixed;
     bottom: 50px;
@@ -695,16 +687,12 @@ footer {
     font-size: 12px;
     color: #000000;
     margin-bottom: 5px;
-    /* Space between text and button */
   }
 
   .floating-button button {
     display: flex;
-    /* Use flexbox for alignment */
     justify-content: center;
-    /* Center horizontally */
     align-items: center;
-    /* Center vertically */
     background-color: #007bff;
     color: white;
     border: none;
@@ -712,7 +700,6 @@ footer {
     width: 50px;
     height: 50px;
     font-size: 24px;
-    /* Size of the icon */
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease, transform 0.2s ease;
@@ -734,7 +721,6 @@ footer {
 
   .floating-button i {
     line-height: 1;
-    /* Ensure the icon doesn't inherit unexpected line-height */
   }
 }
 
