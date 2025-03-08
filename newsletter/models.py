@@ -19,6 +19,26 @@ class Category(models.Model):
 class Article(models.Model):
     # Represents a news article
     title = models.CharField(max_length=200)  # Title of the article
+    department = models.CharField(
+        max_length=50,
+        choices=[
+            ('general', 'General'),
+            ('cse', 'CSE'),
+            ('aiml', 'AIML'),
+            ('cs-ds', 'CS-DS'),
+        ],
+        default='general',
+    )  # Department of the article
+    departments = models.CharField(
+        max_length=50,
+        choices=[
+            ('general', 'General'),
+            ('cse', 'CSE'),
+            ('aiml', 'AIML'),
+            ('cs-ds', 'CS-DS'),
+        ],
+        default='general',
+    )  # New departments field
     slug = models.SlugField(unique=True, null=True, blank=True)  # Unique slug for the article
     content = models.TextField()  # Content of the article
     created_at = models.DateTimeField(auto_now_add=True)  # Timestamp for when the article was created

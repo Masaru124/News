@@ -52,7 +52,11 @@
             <button class="close-btn" onclick="toggleSidebar()">✖</button>
         </div>
         <div class="sidebar-links">
+<<<<<<< HEAD
             <a href="{% url 'index' %}" class="nav-link active">Home</a>
+=======
+            <a href="{% url 'index' %}" class="sidebar-link active">Home</a>
+>>>>>>> e7f8f24fe740c0eb8f2720b2383ae148d8cf70fa
             <a href="{% url 'submit_article' %}" class="sidebar-link">Submit News</a>
             {% if user.is_authenticated %}
             <a href="{% url 'profile' %}" class="nav-link">Profile</a>

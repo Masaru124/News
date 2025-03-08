@@ -62,6 +62,14 @@
                 <h2 class="title">Submit an Article</h2>
 
                 <div class="form-group">
+                    <label for="departments"></label><br>
+                    <select name="departments" id="departments" required>
+                        <option value="" disabled selected>Select a department</option>
+                        <option value="general">General</option>
+                        <option value="cse">CSE</option>
+                        <option value="aiml">AIML</option>
+                        <option value="cs-ds">CS-DS</option>
+                    </select>
                     <label for="title"></label><br>
                     <input type="text" name="title" id="title" required placeholder="Enter article title">
                 </div>

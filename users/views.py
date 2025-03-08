@@ -25,9 +25,16 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 return redirect('index')
+            else:
+                # Add error message for failed login
+                form.add_error(None, "Invalid username or password.")
+
+                login(request, user)
+                return redirect('index')
     else:
         form = UserLoginForm()
     return render(request, 'users/login.html', {'form': form})
+
 
 def profile(request):
     return render(request, 'users/profile.html', {'user': request.user})
