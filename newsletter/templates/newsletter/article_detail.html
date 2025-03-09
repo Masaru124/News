@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load custom_filters %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,39 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Article Detail</title>
     <link rel="stylesheet" href="{% static 'style.css' %}" />
-    <!-- Link to the main stylesheet -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
   </head>
 
   <body>
     <header class="header">
       <nav class="nav-container">
         <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-
         <div class="nav-title">
           <h1>AMC News</h1>
         </div>
-
         <div class="nav-links">
           <ul>
-            <li>
-              <a href="{% url 'index' %}" class="nav-link active">Home</a>
-            </li>
-            <li>
-              <a href="{% url 'submit_article' %}" class="nav-link"
-                >Submit News</a
-              >
-            </li>
+            <li><a href="{% url 'index' %}" class="nav-link active">Home</a></li>
+            <li><a href="{% url 'submit_article' %}" class="nav-link">Submit News</a></li>
           </ul>
         </div>
       </nav>
@@ -52,9 +34,7 @@
       </div>
       <div class="sidebar-links">
         <li><a href="{% url 'index' %}" class="nav-link active">Home</a></li>
-        <li>
-          <a href="{% url 'submit_article' %}" class="nav-link">Submit News</a>
-        </li>
+        <li><a href="{% url 'submit_article' %}" class="nav-link">Submit News</a></li>
       </div>
     </div>
 
@@ -62,10 +42,16 @@
       <div class="article-card">
         <h2 class="article-title">{{ article.title }}</h2>
         <hr>
-        <p class="article-content">{{ article.content|escape }}</p>
+        <p class="article-content">{{ article.content|safe }}</p>
         <hr>
         <div class="like-section">
-          <form method="post" action="{% url 'like_article' article.id %}">
+          {% if user.is_authenticated %}
+            <form method="post" action="{% url 'like_article' article.id %}">
+          {% else %}
+            <button class="like-btn" type="button" onclick="alert('Please log in to like this article.');">
+              <i class="fa-solid fa-heart"></i>
+            </button>
+          {% endif %}
             {% csrf_token %}
             <button class="like-btn" type="submit">
               <i class="fa-solid fa-heart"></i>
@@ -84,35 +70,30 @@
       </div>
     </div>
     
-    
-
     <!-- Comments Section -->
     <div class="comments-section">
       <h3>Comments</h3>
-      <form method="post" action="{% url 'submit_comment' article.id %}">
-        <!-- Form for submitting comments -->
-        {% csrf_token %}
-        <textarea
-          name="content"
-          required
-          placeholder="Add your comment here..."
-        ></textarea>
-        <!-- Comment input -->
-        <button type="submit">Submit Comment</button>
-        <!-- Submit button -->
-      </form>
-
+      {% if user.is_authenticated %}
+        <form method="post" action="{% url 'submit_comment' article.id %}">
+          {% csrf_token %}
+          <textarea name="content" required placeholder="Add your comment here..."></textarea>
+          <button type="submit">Submit Comment</button>
+        </form>
+      {% else %}
+        <p>Please log in to submit a comment. <a href="{% url 'login' %}">Login here</a>.</p>
+      {% endif %}
+      
       <div class="existing-comments">
         {% for comment in article.comments.all %}
-        <!-- Loop through existing comments -->
         <div class="comment">
-          <p>
-            <strong>{{ comment.author.username }}</strong>: {{ comment.content
-            }}
-          </p>
-          <!-- Display comment -->
+          <p><strong>{{ comment.author.username }}</strong>: {{ comment.content }}</p>
           <p><em>Posted on: {{ comment.created_at|date:"F d, Y" }}</em></p>
-          <!-- Comment date -->
+          {% if user.is_authenticated and user == comment.author %}
+            <form method="post" action="{% url 'delete_comment' comment.id %}">
+              {% csrf_token %}
+              <button type="submit">Delete</button>
+            </form>
+          {% endif %}
         </div>
         {% endfor %}
       </div>
@@ -120,9 +101,6 @@
 
     <footer>
       <div class="footer-container">
-        <!-- Social Media Section -->
-
-        <!-- Quick Links Section -->
         <div class="footer-section quick-links">
           <h3>Quick Links</h3>
           <ul>
@@ -136,16 +114,10 @@
           <h3>Follow Us</h3>
           <div class="social-icons">
             <a href="https://www.linkedin.com/school/amc-engineering-college/"><i class="fa-brands fa-linkedin"></i></a>
-            <a
-              href="https://www.instagram.com/amc.education?igsh=MTg3MndnemdtYjJhZg=="
-            >
-              <i class="fa-brands fa-instagram"></i>
-            </a>
+            <a href="https://www.instagram.com/amc.education?igsh=MTg3MndnemdtYjJhZg=="><i class="fa-brands fa-instagram"></i></a>
           </div>
         </div>
       </div>
-
-      <!-- Copyright Section -->
       <div class="footer-bottom">
         <p>&copy; 2025 AMC News | All rights reserved.</p>
       </div>
