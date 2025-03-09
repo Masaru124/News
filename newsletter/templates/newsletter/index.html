@@ -14,8 +14,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
     rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -27,8 +28,12 @@
       </div>
       <div class="nav-links">
         <ul>
-          <li><a href="{% url 'index' %}" class="nav-link active">Home</a></li>
-          <li><a href="{% url 'submit_article' %}" class="nav-link">Submit News</a></li>
+          <li>
+            <a href="{% url 'index' %}" class="nav-link active">Home</a>
+          </li>
+          <li>
+            <a href="{% url 'submit_article' %}" class="nav-link">Submit News</a>
+          </li>
           {% if user.is_authenticated %}
           <li><a href="{% url 'profile' %}" class="nav-link">Profile</a></li>
           {% else %}
@@ -47,26 +52,47 @@
       <h2>Menu</h2>
       <button class="close-btn" onclick="toggleSidebar()">✖</button>
     </div>
-    <div class="sidebar-links">
-      <a href="#" class="sidebar-link active">Home</a>
-      <a href="{% url 'submit_article' %}" class="sidebar-link">Submit News</a>
-      {% if user.is_authenticated %}
-      <a href="{% url 'profile' %}" class="nav-link">Profile</a>
-      {% else %}
-      <a href="{% url 'login' %}" class="nav-link">Login</a>
-      {% endif %}
+    <div class="nav-links">
+      <ul>
+        <li><a href="{% url 'index' %}" class="nav-link active">Home</a></li>
+        <li><a href="{% url 'submit_article' %}" class="nav-link">Submit News</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'profile' %}" class="nav-link">Profile</a></li>
+        {% else %}
+        <li><a href="{% url 'login' %}" class="nav-link">Login</a></li>
+        {% endif %}
+      </ul>
     </div>
   </div>
 
+
+  <div class="floating-button">
+    <p>
+      Click to<br />
+      submit news
+    </p>
+    <button>
+      <a href="{% url 'submit_article' %}"><i class="fa fa-plus"></i></a>
+    </button>
+  </div>
+
   <main>
+
     <section class="news-grid">
-      <div class="section-title">
+      <form method="GET" action="{% url 'index' %}">
+        <div class="searchbar">
+          <input type="text" name="search" id="search" placeholder="Search news..." value="{{ request.GET.search }}" />
+          <button type="submit"><i class="ri-search-2-line"></i></button>
+        </div>
+      </form>
+
+      <!-- <div class="section-title">
         <h2>Latest News</h2>
         <div class="title-underline"></div>
-      </div>
+      </div> -->
 
       <div class="category-selection">
-        <form method="GET" action="{% url 'index' %}" onsubmit="return checkCategory()">
+        <!-- <form method="GET" action="{% url 'index' %}" onsubmit="return checkCategory()">
           <label for="department">Select Department:</label>
           <select name="department" id="department" onchange="this.form.submit()">
             <option value="" {% if not selected_department %}selected{% endif %}>All Departments</option>
@@ -75,25 +101,23 @@
             <option value="aiml" {% if selected_department == "aiml" %}selected{% endif %}>AIML</option>
             <option value="cs-ds" {% if selected_department == "cs-ds" %}selected{% endif %}>CS-DS</option>
           </select>
-        </form>
+        </form> -->
 
-        <form method="GET" action="{% url 'index' %}">
-          <label for="search">Search:</label>
-          <input type="text" name="search" id="search" placeholder="Search news..." value="{{ request.GET.search }}" />
-          <button type="submit">Search</button>
-        </form>
 
-        <form method="GET" action="{% url 'index' %}" onsubmit="return checkCategory()">
-          <label for="category">Select Category:</label>
-          <select name="category_slug" id="category" onchange="this.form.submit()">
-            <option value="" {% if not selected_category %}selected{% endif %}>All Categories</option>
+        <nav>
+          <ul id="category-nav">
             {% for category in categories %}
-            <option value="{{ category.slug }}" {% if category.slug == selected_category %}selected{% endif %}>
-              {{ category.name }}
-            </option>
+              <li>
+                <a href="{% url 'index' %}?category_slug={{ category.slug }}" 
+                   class="{% if category.slug == selected_category %}active{% endif %}">
+                  {{ category.name }}
+                </a>
+              </li>
             {% endfor %}
-          </select>
-        </form>
+          </ul>
+        </nav>
+        
+        
       </div>
 
       <div class="articles-container" id="articles-container">
@@ -121,7 +145,33 @@
 
   <footer>
     <div class="footer-container">
-      <!-- Footer Sections -->
+      <!-- Social Media Section -->
+
+      <!-- Quick Links Section -->
+      <div class="footer-section quick-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section social-links">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/school/amc-engineering-college/"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://www.instagram.com/amc.education?igsh=MTg3MndnemdtYjJhZg==">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="footer-bottom">
+      <p>&copy; 2025 AMC News | All rights reserved.</p>
+      <p>Made By Matharishwa S,Bichitra Behera & Bharath S</p>
     </div>
   </footer>
 
@@ -132,6 +182,14 @@
     }
   </script>
 
+</body>
+
+<script>
+  function toggleSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("visible");
+  }
+</script>
 </body>
 
 </html>

@@ -28,68 +28,7 @@ body {
     color: var(--text-color);
 }
 
-/* Header Styles */
-.header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background-color: #006994;
-    box-shadow: var(--shadow);
-}
 
-.amc {
-    background-color: #006994;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.amc h1 {
-    color: var(--white);
-    font-size: 18px;
-    font-weight: 500;
-    letter-spacing: 3px;
-    margin: 0;
-    
-}
-
-.nav-container {
-    padding: 1rem;
-    background-color: var(--white);
-}
-
-.nav-links {
-    max-width: 1200px;
-    margin: 0 100px;
-    display: flex;
-    gap: 2rem;
-    justify-content: flex-end;
-}
-
-.logo{
-    height: 40px;
-    width: 40px;
-    background-color: #003459;
-        margin-right: auto;
-}
-.nav-link {
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    transition: var(--transition);
-}
-
-.nav-link:hover, .nav-link.active {
-    background-color: #006994;
-    color: var(--white);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Hero Section */
 .hero {
     background: linear-gradient(rgba(37, 99, 235, 0.9), rgba(29, 78, 216, 0.9)),
                 url('/images/bg.jpg');

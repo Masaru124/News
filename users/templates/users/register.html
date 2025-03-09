@@ -2,94 +2,106 @@
 
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/users.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/users.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>User Registration</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="header">
-        <nav class="nav-container">
-            <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-            <div class="nav-title">
-                <h1>AMC News</h1>
-            </div>
-            <div class="nav-links">
-                <ul>
-                    <li>
-                        <a href="#" class="sidebar-link active">Home</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'submit_article' %}" class="sidebar-link">Submit News</a>
-                    </li>
-                    {% if user.is_authenticated %}
-                    <li>
-                        <a href="{% url 'profile' %}" class="nav-link">Profile</a>
-                    </li>
-                    {% else %}
-                    <li>
-                        <a href="{% url 'login' %}" class="nav-link">Login</a>
-                    </li>
-                    {% endif %}
-                </ul>
-            </div>
-        </nav>
+      <nav class="nav-container">
+        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+        <div class="nav-title">
+          <h1>AMC News</h1>
+        </div>
+        <div class="nav-links">
+          <ul>
+            <li>
+              <a href="{% url 'index' %}" class="nav-link active">Home</a>
+            </li>
+            <li>
+              <a href="{% url 'submit_article' %}" class="sidebar-link"
+                >Submit News</a
+              >
+            </li>
+            {% if user.is_authenticated %}
+            <li>
+              <a href="{% url 'profile' %}" class="nav-link">Profile</a>
+            </li>
+            {% else %}
+            <li>
+              <a href="{% url 'login' %}" class="nav-link">Login</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
     </header>
 
     <!-- Sidebar -->
     <div id="sidebar" class="sidebar">
-        <div class="sidebar-header">
-            <h2>Menu</h2>
-            <button class="close-btn" onclick="toggleSidebar()">✖</button>
-        </div>
-        <div class="sidebar-links">
-            <li>
-                <a href="{% url 'index' %}" class="sidebar-link active">Home</a>
-            </li>
-            <li>
-                <a href="{% url 'submit_article' %}" class="sidebar-link">Submit News</a>
-            </li>
-            {% if user.is_authenticated %}
-            <li>
-                <a href="{% url 'profile' %}" class="nav-link">Profile</a>
-            </li>
-            {% else %}
-            <li>
-                <a href="{% url 'login' %}" class="nav-link">Login</a>
-            </li>
-            {% endif %}
-        </div>
+      <div class="sidebar-header">
+        <h2>Menu</h2>
+        <button class="close-btn" onclick="toggleSidebar()">✖</button>
+      </div>
+      <div class="sidebar-links">
+        <li>
+          <a href="{% url 'index' %}" class="sidebar-link active">Home</a>
+        </li>
+        <li>
+          <a href="{% url 'submit_article' %}" class="sidebar-link"
+            >Submit News</a
+          >
+        </li>
+        {% if user.is_authenticated %}
+        <li>
+          <a href="{% url 'profile' %}" class="nav-link">Profile</a>
+        </li>
+        {% else %}
+        <li>
+          <a href="{% url 'login' %}" class="nav-link">Login</a>
+        </li>
+        {% endif %}
+      </div>
     </div>
 
-
     <div class="login-form">
-        <h2>Register</h2>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Register</button>
-        </form>
-        <p> Already have an account?<a href="{% url 'login' %}"> Login here.</a></p>
+      <h2>Register</h2>
+      <form method="post">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit">Register</button>
+      </form>
+      <p>
+        Already have an account?<a href="{% url 'login' %}"> Login here.</a>
+      </p>
     </div>
 
     <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById("sidebar");
-            sidebar.classList.toggle("visible");
-        }
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("visible");
+      }
     </script>
-</body>
-
+  </body>
 </html>

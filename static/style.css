@@ -11,7 +11,7 @@
   --transition: all 0.3s ease;
 }
 
-/* @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 * {
   margin: 0;
@@ -30,7 +30,6 @@ body {
   color: var(--text-color);
 }
 
-/* Sidebar Styles */
 .sidebar {
   position: fixed;
   top: 0;
@@ -116,6 +115,30 @@ body {
   z-index: 1200;
 }
 
+.searchbar {
+  width: 100%;
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.searchbar input {
+  width: 70%;
+  padding: 10px;
+}
+
+.searchbar button {
+  padding: 10px;
+  background-color: hsl(197, 100%, 30%);
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
 .nav-container {
   display: flex;
   padding: 20px 150px;
@@ -124,7 +147,11 @@ body {
   background-color: hsl(197, 100%, 30%);
 }
 
-.nav-links{
+.nav-title h1 {
+  color: white;
+}
+
+.nav-links {
   padding: 0;
 }
 
@@ -153,18 +180,18 @@ body {
 
 /* News Grid */
 .news-grid {
-  max-width: 1200px;
-  margin: 1rem auto;
-  padding: 0 2rem;
+  margin: 0 auto;
+  padding: 0;
+  width: 90%;
 }
 
 .section-title {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 
 .section-title h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: var(--text-color);
   margin-bottom: 0.5rem;
 }
@@ -178,7 +205,7 @@ body {
 }
 
 .articles-container {
-  margin: 0 auto;
+  margin: 10px auto;
   display: grid;
   max-width: 650px;
   gap: 1rem;
@@ -222,7 +249,7 @@ section {
 
 .news-excerpt {
   color: var(--light-text);
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-bottom: 0.8rem;
 }
 
@@ -250,7 +277,6 @@ section {
   transform: translateY(-5px);
 }
 
-/* Category Dropdown */
 select {
   width: 100%;
   padding: 0.75rem;
@@ -268,7 +294,6 @@ select:focus {
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-/* Admin Panel Styles */
 .admin-panel {
   max-width: 1200px;
   margin: 3rem auto;
@@ -329,7 +354,6 @@ select:focus {
   border-radius: 0.5rem;
 }
 
-/* Success Message Styles */
 .success-message {
   max-width: 700px;
   margin: 3rem auto;
@@ -437,7 +461,6 @@ select:focus {
   background-color: hsl(197, 100%, 30%);
 }
 
-/* Submit News Form */
 .submitnews {
   max-width: 700px;
   margin: 20px auto;
@@ -505,15 +528,12 @@ button:hover {
   transform: translateY(-2px);
 }
 
-/* Footer Styles */
 footer {
   background-color: hsl(197, 100%, 30%);
   color: #ffffff;
   padding: 30px 20px;
-  font-family: "Poppins", sans-serif;
 }
 
-/* Footer Container */
 .footer-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -523,15 +543,11 @@ footer {
   text-align: center;
 }
 
-/* Footer Sections */
 .footer-section h3 {
-  font-size: 18px;
   margin-bottom: 15px;
   color: #ffffff;
-  text-transform: uppercase;
 }
 
-/* Social Media Icons */
 .social-icons a {
   font-size: 22px;
   margin: 0 10px;
@@ -544,7 +560,6 @@ footer {
   transform: scale(1.2);
 }
 
-/* Quick Links */
 .quick-links ul {
   list-style: none;
   padding: 0;
@@ -557,7 +572,7 @@ footer {
 .quick-links ul li a {
   color: #ffffff;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 16px;
   transition: color 0.3s ease-in-out;
 }
 
@@ -565,13 +580,16 @@ footer {
   color: #000000;
 }
 
-/* Footer Bottom */
 .footer-bottom {
   text-align: center;
   margin-top: 30px;
   padding-top: 15px;
   border-top: 1px solid #ffffff;
-  font-size: 14px;
+  font-size: 16px;
+}
+
+.footer-bottom p {
+  padding: 5px;
 }
 
 @keyframes fadeInDown {
@@ -598,13 +616,13 @@ footer {
   }
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .nav-container {
     justify-content: space-between;
     margin: 0;
     padding: 20px;
   }
+
   .nav-title h1 {
     font-size: 1rem;
     display: none;
@@ -634,7 +652,8 @@ footer {
     font-size: 16px;
   }
 
-  .artcont ,.comments-section{
+  .artcont,
+  .comments-section {
     min-width: 300px;
     padding: 30px;
   }
@@ -673,15 +692,14 @@ footer {
   footer {
     display: flex;
     flex-direction: column;
+    font-size: 14px;
   }
 
   .footer-container {
     display: flex;
     flex-direction: column;
   }
-}
 
-@media (max-width: 768px) {
   .floating-button {
     position: fixed;
     bottom: 50px;
@@ -695,16 +713,12 @@ footer {
     font-size: 12px;
     color: #000000;
     margin-bottom: 5px;
-    /* Space between text and button */
   }
 
   .floating-button button {
     display: flex;
-    /* Use flexbox for alignment */
     justify-content: center;
-    /* Center horizontally */
     align-items: center;
-    /* Center vertically */
     background-color: #007bff;
     color: white;
     border: none;
@@ -712,7 +726,6 @@ footer {
     width: 50px;
     height: 50px;
     font-size: 24px;
-    /* Size of the icon */
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease, transform 0.2s ease;
@@ -734,7 +747,6 @@ footer {
 
   .floating-button i {
     line-height: 1;
-    /* Ensure the icon doesn't inherit unexpected line-height */
   }
 }
 
@@ -742,4 +754,109 @@ footer {
   .floating-button {
     display: none;
   }
+}
+
+#category-nav {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px;
+}
+
+#category-nav li {
+  display: inline;
+}
+
+#category-nav a {
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  background: rgb(255, 255, 255);
+  color: black;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+#category-nav a.active {
+  background-color: hsl(197, 100%, 30%);
+  color: white;
+}
+
+.category-selection {
+  margin: 0 auto;
+}
+
+.artcont {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.article-card {
+  background: #fff;
+  width: 500px;
+  border-radius: 12px;
+  border: 1px solid grey;
+  padding: 20px;
+  text-align: center;
+}
+
+.article-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.article-content {
+  font-size: 16px;
+  color: #555;
+  min-height: 150px;
+  /* Ensures a good layout */
+  overflow-wrap: break-word;
+}
+
+.article-author,
+.article-category,
+.article-date,
+.article-likes {
+  font-size: 14px;
+  color: #777;
+  margin: 5px 0;
+}
+
+.like-form {
+  margin-top: 10px;
+}
+
+.like-btn {
+  background: #ff3b30;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.like-btn:hover {
+  background: #e02a1f;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 8px 12px;
+  text-decoration: none;
+  background: #1877f2;
+  color: white;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.back-btn:hover {
+  background: #135db2;
 }
