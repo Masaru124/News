@@ -61,22 +61,29 @@
     <div class="artcont">
       <div class="article-card">
         <h2 class="article-title">{{ article.title }}</h2>
+        <hr>
         <p class="article-content">{{ article.content|escape }}</p>
-        <p class="article-author"><strong>By:</strong> {{ article.author.username }}</p>
-        <p class="article-category"><strong>Category:</strong> {{ article.category.name }}</p>
-        <p class="article-date"><strong>Published on:</strong> {{ article.created_at|date:"F d, Y" }}</p>
-        <p class="article-likes"><i class="fa-solid fa-heart"></i> {{ article.likes_count }} Likes</p>
-    
-        <form method="post" action="{% url 'like_article' article.id %}" class="like-form">
-          {% csrf_token %}
-          <button class="like-btn" type="submit">
-            <i class="fa-solid fa-heart"></i> Like
-          </button>
-        </form>
+        <hr>
+        <div class="like-section">
+          <form method="post" action="{% url 'like_article' article.id %}">
+            {% csrf_token %}
+            <button class="like-btn" type="submit">
+              <i class="fa-solid fa-heart"></i>
+            </button>
+          </form>
+          <span class="like-count">{{ article.likes_count }} Likes</span>
+        </div>
+        
+        <div class="article-info">
+          <p>{{ article.author.username }}</p>
+          <p>{{ article.category.name }}</p>
+          <p>{{ article.created_at|date:"F d, Y" }}</p>
+        </div>
     
         <a href="{% url 'index' %}" class="back-btn">Back to Home</a>
       </div>
     </div>
+    
     
 
     <!-- Comments Section -->
