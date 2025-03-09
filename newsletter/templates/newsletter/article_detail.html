@@ -59,29 +59,25 @@
     </div>
 
     <div class="artcont">
-      <h2><strong>{{ article.title }}</strong></h2>
-      <!-- Article title -->
-      <p>{{ article.content|escape }}</p>
-      <!-- Article content -->
-      <p>By: {{ article.author.username }}</p>
-      <!-- Author of the article -->
-      <p>Category: {{ article.category.name }}</p>
-      <!-- Category of the article -->
-      <p>Published on: {{ article.created_at|date:"F d, Y" }}</p>
-      <!-- Publication date -->
-      <p>Likes: {{ article.likes_count }}</p>
-      <!-- Display likes count -->
-      <form method="post" action="{% url 'like_article' article.id %}">
-        <!-- Form for liking the article -->
-        {% csrf_token %}
-        <button class="like-btn" type="submit">
-          <i class="fa-solid fa-heart"></i>Like
-        </button>
-        <!-- Like button with icon -->
-      </form>
-      <button><a href="{% url 'index' %}">Back to Home</a></button>
-      <!-- Back button -->
+      <div class="article-card">
+        <h2 class="article-title">{{ article.title }}</h2>
+        <p class="article-content">{{ article.content|escape }}</p>
+        <p class="article-author"><strong>By:</strong> {{ article.author.username }}</p>
+        <p class="article-category"><strong>Category:</strong> {{ article.category.name }}</p>
+        <p class="article-date"><strong>Published on:</strong> {{ article.created_at|date:"F d, Y" }}</p>
+        <p class="article-likes"><i class="fa-solid fa-heart"></i> {{ article.likes_count }} Likes</p>
+    
+        <form method="post" action="{% url 'like_article' article.id %}" class="like-form">
+          {% csrf_token %}
+          <button class="like-btn" type="submit">
+            <i class="fa-solid fa-heart"></i> Like
+          </button>
+        </form>
+    
+        <a href="{% url 'index' %}" class="back-btn">Back to Home</a>
+      </div>
     </div>
+    
 
     <!-- Comments Section -->
     <div class="comments-section">

@@ -115,6 +115,30 @@ body {
   z-index: 1200;
 }
 
+.searchbar {
+  width: 100%;
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.searchbar input {
+  width: 70%;
+  padding: 10px;
+}
+
+.searchbar button {
+  padding: 10px;
+  background-color: hsl(197, 100%, 30%);
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
 .nav-container {
   display: flex;
   padding: 20px 150px;
@@ -156,18 +180,18 @@ body {
 
 /* News Grid */
 .news-grid {
-  max-width: 1200px;
-  margin: 1rem auto;
-  padding: 0 2rem;
+  margin: 0 auto;
+  padding: 0;
+  width: 90%;
 }
 
 .section-title {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 
 .section-title h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: var(--text-color);
   margin-bottom: 0.5rem;
 }
@@ -181,7 +205,7 @@ body {
 }
 
 .articles-container {
-  margin: 0 auto;
+  margin: 10px auto;
   display: grid;
   max-width: 650px;
   gap: 1rem;
@@ -225,7 +249,7 @@ section {
 
 .news-excerpt {
   color: var(--light-text);
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-bottom: 0.8rem;
 }
 
@@ -598,6 +622,7 @@ footer {
     margin: 0;
     padding: 20px;
   }
+
   .nav-title h1 {
     font-size: 1rem;
     display: none;
@@ -667,6 +692,7 @@ footer {
   footer {
     display: flex;
     flex-direction: column;
+    font-size: 14px;
   }
 
   .footer-container {
@@ -728,4 +754,109 @@ footer {
   .floating-button {
     display: none;
   }
+}
+
+#category-nav {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px;
+}
+
+#category-nav li {
+  display: inline;
+}
+
+#category-nav a {
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  background: rgb(255, 255, 255);
+  color: black;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+#category-nav a.active {
+  background-color: hsl(197, 100%, 30%);
+  color: white;
+}
+
+.category-selection {
+  margin: 0 auto;
+}
+
+.artcont {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.article-card {
+  background: #fff;
+  width: 500px;
+  border-radius: 12px;
+  border: 1px solid grey;
+  padding: 20px;
+  text-align: center;
+}
+
+.article-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.article-content {
+  font-size: 16px;
+  color: #555;
+  min-height: 150px;
+  /* Ensures a good layout */
+  overflow-wrap: break-word;
+}
+
+.article-author,
+.article-category,
+.article-date,
+.article-likes {
+  font-size: 14px;
+  color: #777;
+  margin: 5px 0;
+}
+
+.like-form {
+  margin-top: 10px;
+}
+
+.like-btn {
+  background: #ff3b30;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.like-btn:hover {
+  background: #e02a1f;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 8px 12px;
+  text-decoration: none;
+  background: #1877f2;
+  color: white;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.back-btn:hover {
+  background: #135db2;
 }
