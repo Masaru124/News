@@ -14,6 +14,7 @@
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
 
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
 
     <style>
         #editor {
@@ -30,7 +31,15 @@
             <div class="nav-title">
                 <h1>AMC News</h1>
             </div>
-
+            <div class="profile-login">
+                <ul>
+                  {% if user.is_authenticated %}
+                  <li><a href="{% url 'profile' %}" class="nav-link"><i class="ri-user-3-fill"></i>{{ user.username }}</a></li>
+                  {% else %}
+                  <li><a href="{% url 'login' %}" class="nav-link"><i class="ri-user-3-fill"></i>Login</a></li>
+                  {% endif %}
+                </ul>
+              </div>
             <div class="nav-links">
                 <ul>
                     <li><a href="{% url 'index' %}" class="nav-link">Home</a></li>
