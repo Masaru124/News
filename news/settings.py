@@ -128,6 +128,10 @@ STATICFILES_DIRS = [
     BASE_DIR / 'newsletter/Static',
 ]
 
+# Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # Add WhiteNoise middleware for serving static files in production
 MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 

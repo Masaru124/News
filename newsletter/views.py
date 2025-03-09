@@ -82,6 +82,14 @@ def render_static_html(request):
 def approve_article(request, article_id):
     logger.info(f"Request to approve article with ID: {article_id}")
     article = get_object_or_404(Article, id=article_id)
+    
+    # Check if the user has already liked the article
+    if request.user in article.liked_users.all():
+        article.likes_count -= 1  # Decrease like count
+        article.liked_users.remove(request.user)  # Remove user from liked users
+    else:
+        article.likes_count += 1  # Increase like count
+        article.liked_users.add(request.user)  # Add user to liked users
     article.is_approved = True  # Approve the article
     article.save()
     return redirect('admin_article_list')
@@ -97,6 +105,19 @@ def admin_article_list(request):
     articles = Article.objects.filter(is_approved=False).select_related('category', 'author')
     return render(request, 'newsletter/admin_articles.html', {'articles': articles})
 
+def delete_comment(request, comment_id):
+    logger.info(f"Request to delete comment with ID: {comment_id}")
+    comment = get_object_or_404(Comment, id=comment_id)
+
+    # Ensure the user is the author of the comment
+    if request.user == comment.author:
+        comment.delete()
+        logger.info(f"Comment deleted with ID: {comment_id}")
+    else:
+        logger.warning(f"User {request.user.username} tried to delete a comment they do not own.")
+
+    return redirect('article_detail', article_id=comment.article.id)
+
 def article_detail(request, article_id):
     logger.info(f"GET request for article detail with ID: {article_id}")
     article = get_object_or_404(Article, id=article_id)
@@ -107,7 +128,7 @@ def submit_comment(request, article_id):
 
     # Ensure the user is logged in before allowing comment submission
     if not request.user.is_authenticated:
-        return HttpResponseForbidden("You must be logged in to submit a comment.")
+        return redirect('login')  # Redirect to the login page if not authenticated
 
     article = get_object_or_404(Article, id=article_id)
 
@@ -122,13 +143,15 @@ def submit_comment(request, article_id):
         return redirect('article_detail', article_id=article.id)
 
 def like_article(request, article_id):
+    # Ensure the user is logged in before allowing likes
+    if not request.user.is_authenticated:
+        return redirect('login')  # Redirect to the login page or show a login popup
+
     logger.info(f"Request to like article with ID: {article_id}")
     article = get_object_or_404(Article, id=article_id)
     
     # Increment the likes count
-    article.likes_count += 1
+    
     article.save()
     
     return redirect('article_detail', article_id=article.id)
-
-# Optional: Add more views if needed (e.g., for pagination, article approval, etc.)
