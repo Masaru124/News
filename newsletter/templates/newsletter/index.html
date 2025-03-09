@@ -26,6 +26,15 @@
       <div class="nav-title">
         <h1>AMC News</h1>
       </div>
+      <div class="profile-login">
+        <ul>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'profile' %}" class="nav-link"><i class="ri-user-3-fill"></i>{{ user.username }}</a></li>
+          {% else %}
+          <li><a href="{% url 'login' %}" class="nav-link"><i class="ri-user-3-fill"></i>Login</a></li>
+          {% endif %}
+        </ul>
+      </div>
       <div class="nav-links">
         <ul>
           <li>
@@ -35,9 +44,9 @@
             <a href="{% url 'submit_article' %}" class="nav-link">Submit News</a>
           </li>
           {% if user.is_authenticated %}
-          <li><a href="{% url 'profile' %}" class="nav-link">Profile</a></li>
+          <li><a href="{% url 'profile' %}" class="nav-link"><i class="ri-user-3-fill"></i>{{ user.username }}</a></li>
           {% else %}
-          <li><a href="{% url 'login' %}" class="nav-link">Login</a></li>
+          <li><a href="{% url 'login' %}" class="nav-link"><i class="ri-user-3-fill"></i>Login</a></li>
           {% endif %}
         </ul>
       </div>
@@ -51,17 +60,17 @@
     <div class="sidebar-header">
       <h2>Menu</h2>
       <button class="close-btn" onclick="toggleSidebar()">✖</button>
-    </div> 
-    <div class="sidebar-links">
-        <a href="{% url 'index' %}" class="sidebar-link active">Home</a>
-        <a href="{% url 'submit_article' %}" class="sidebar-link">Submit News</a>
-        {% if user.is_authenticated %}
-        <a href="{% url 'profile' %}" class="sidebar-link">Profile</a>
-        {% else %}
-        <a href="{% url 'login' %}" class="sidebar-link">Login</a>
-        {% endif %}
     </div>
-    
+    <div class="sidebar-links">
+      <a href="{% url 'index' %}" class="sidebar-link active">Home</a>
+      <a href="{% url 'submit_article' %}" class="sidebar-link">Submit News</a>
+      <!-- {% if user.is_authenticated %}
+      <a href="{% url 'profile' %}" class="sidebar-link">Profile</a>
+      {% else %}
+      <a href="{% url 'login' %}" class="sidebar-link">Login</a>
+      {% endif %} -->
+    </div>
+
   </div>
 
 
@@ -101,24 +110,19 @@
             <option value="cs-ds" {% if selected_department == "cs-ds" %}selected{% endif %}>CS-DS</option>
           </select>
         </form> -->
-
-
         <nav>
           <ul id="category-nav">
             {% for category in categories %}
-              <li>
-                <a href="{% url 'index' %}?category_slug={{ category.slug }}" 
-                   class="{% if category.slug == selected_category %}active{% endif %}">
-                  {{ category.name }}
-                </a>
-              </li>
+            <li>
+              <a href="{% url 'index' %}?category_slug={{ category.slug }}"
+                class="{% if category.slug == selected_category %}active{% endif %}">
+                {{ category.name }}
+              </a>
+            </li>
             {% endfor %}
           </ul>
         </nav>
-        
-        
       </div>
-
       <div class="articles-container" id="articles-container">
         {% for article in articles %}
         <article class="news-card">
