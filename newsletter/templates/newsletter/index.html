@@ -51,18 +51,17 @@
     <div class="sidebar-header">
       <h2>Menu</h2>
       <button class="close-btn" onclick="toggleSidebar()">✖</button>
-    </div>
-    <div class="nav-links">
-      <ul>
-        <li><a href="{% url 'index' %}" class="nav-link active">Home</a></li>
-        <li><a href="{% url 'submit_article' %}" class="nav-link">Submit News</a></li>
+    </div> 
+    <div class="sidebar-links">
+        <a href="{% url 'index' %}" class="sidebar-link active">Home</a>
+        <a href="{% url 'submit_article' %}" class="sidebar-link">Submit News</a>
         {% if user.is_authenticated %}
-        <li><a href="{% url 'profile' %}" class="nav-link">Profile</a></li>
+        <a href="{% url 'profile' %}" class="sidebar-link">Profile</a>
         {% else %}
-        <li><a href="{% url 'login' %}" class="nav-link">Login</a></li>
+        <a href="{% url 'login' %}" class="sidebar-link">Login</a>
         {% endif %}
-      </ul>
     </div>
+    
   </div>
 
 

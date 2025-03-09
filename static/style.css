@@ -141,7 +141,7 @@ body {
 
 .nav-container {
   display: flex;
-  padding: 20px 150px;
+  padding: 15px 150px;
   justify-content: space-between;
   align-items: center;
   background-color: hsl(197, 100%, 30%);
@@ -231,9 +231,7 @@ section {
 
 .news-card:hover {
   border: 1px black;
-
-  transform: scale(1.000001);
-  box-shadow: 0 10px 20px rgba(0, 0, 20, 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 109, 0.1);
 }
 
 .news-content {
@@ -300,37 +298,6 @@ select:focus {
   padding: 2rem;
 }
 
-.article-card {
-  background: var(--white);
-  border-radius: 1rem;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  box-shadow: var(--shadow);
-}
-
-.article-title {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: var(--text-color);
-}
-
-.article-meta {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  color: var(--light-text);
-}
-
-.article-content {
-  margin-bottom: 1.5rem;
-  color: var(--text-color);
-}
-
-.article-actions {
-  display: flex;
-  gap: 1rem;
-}
-
 .approve-btn {
   display: inline-block;
   padding: 0.5rem 1rem;
@@ -358,9 +325,7 @@ select:focus {
   max-width: 700px;
   margin: 3rem auto;
   padding: 2rem;
-
   border-radius: 0.2rem;
-
   text-align: center;
 }
 
@@ -407,41 +372,6 @@ select:focus {
   font-style: italic;
 }
 
-.artcont {
-  max-width: 700px;
-  justify-content: center;
-  align-items: center;
-  margin: 1rem auto;
-  border-radius: 0.2rem;
-}
-
-.artcont h2 {
-  padding: 0.8rem 0;
-}
-
-.artcont p {
-  padding: 0.8rem 0;
-  font-size: 1rem;
-}
-
-.artcont a {
-  text-decoration: none;
-  color: white;
-}
-
-.artcont button {
-  margin: 0.8rem 0;
-  height: 40px;
-  width: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: hsl(197, 100%, 30%);
-}
-
-.like-btn {
-  background-color: white;
-}
 
 .comments-section {
   max-width: 700px;
@@ -617,10 +547,11 @@ footer {
 }
 
 @media (max-width: 768px) {
+
   .nav-container {
     justify-content: space-between;
     margin: 0;
-    padding: 20px;
+    padding: 15px;
   }
 
   .nav-title h1 {
@@ -697,7 +628,15 @@ footer {
 
   .footer-container {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
+  }
+
+  .quick-links ul li a{
+    font-size: 14px;
+  }
+
+  .footer-bottom p{
+    font-size: 13px;
   }
 
   .floating-button {
@@ -787,7 +726,6 @@ footer {
 .category-selection {
   margin: 0 auto;
 }
-
 .artcont {
   width: 100%;
   display: flex;
@@ -798,7 +736,6 @@ footer {
 .article-card {
   background: #fff;
   width: 500px;
-  border-radius: 12px;
   border: 1px solid grey;
   padding: 20px;
   text-align: center;
@@ -808,31 +745,29 @@ footer {
   font-size: 20px;
   font-weight: bold;
   color: #333;
+  margin-bottom: 10px;
 }
 
 .article-content {
   font-size: 16px;
   color: #555;
-  min-height: 150px;
-  /* Ensures a good layout */
-  overflow-wrap: break-word;
+  min-height: 200px; /* Ensures a good layout */
+  padding: 0px;
+  text-align: left;
+  line-height: 1.5;
+  margin: 0px;
 }
 
-.article-author,
-.article-category,
-.article-date,
-.article-likes {
-  font-size: 14px;
-  color: #777;
-  margin: 5px 0;
-}
-
-.like-form {
+.like-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
   margin-top: 10px;
+  text-align: left;
 }
 
 .like-btn {
-  background: #ff3b30;
   color: white;
   border: none;
   padding: 8px 15px;
@@ -840,10 +775,35 @@ footer {
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.like-btn i {
+  font-size: 18px;
+  color: #ff3b30;
 }
 
 .like-btn:hover {
   background: #e02a1f;
+}
+
+.like-count {
+  font-size: 16px;
+  color: #333;
+}
+
+.article-info {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #777;
+  text-align: left;
+}
+
+.article-info p{
+  padding: 0;
+  margin: 0;
 }
 
 .back-btn {
