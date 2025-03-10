@@ -8,6 +8,8 @@
     <title>Article Detail</title>
     <link rel="stylesheet" href="{% static 'style.css' %}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
   </head>
 
@@ -17,6 +19,15 @@
         <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
         <div class="nav-title">
           <h1>AMC News</h1>
+        </div>
+        <div class="profile-login">
+          <ul>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'profile' %}" class="nav-link"><i class="ri-user-3-fill"></i>{{ user.username }}</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}" class="nav-link"><i class="ri-user-3-fill"></i>Login</a></li>
+            {% endif %}
+          </ul>
         </div>
         <div class="nav-links">
           <ul>
@@ -59,13 +70,13 @@
           </form>
           <span class="like-count">{{ article.likes_count }} Likes</span>
         </div>
-        
+
         <div class="article-info">
           <p>{{ article.author.username }}</p>
           <p>{{ article.category.name }}</p>
           <p>{{ article.created_at|date:"F d, Y" }}</p>
         </div>
-    
+
         <a href="{% url 'index' %}" class="back-btn">Back to Home</a>
       </div>
     </div>

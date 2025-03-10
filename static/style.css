@@ -141,7 +141,7 @@ body {
 
 .nav-container {
   display: flex;
-  padding: 15px 150px;
+  padding: 15px 200px;
   justify-content: space-between;
   align-items: center;
   background-color: hsl(197, 100%, 30%);
@@ -155,9 +155,17 @@ body {
   padding: 0;
 }
 
+.profile-login{
+  display: none;
+}
+
 .nav-links ul {
   display: flex;
   gap: 30px;
+  list-style: none;
+}
+
+.profile-login ul{
   list-style: none;
 }
 
@@ -165,7 +173,13 @@ body {
   text-decoration: none;
   font-size: 1rem;
   color: rgb(255, 255, 255);
-  font-weight: 600;
+}
+
+.profile-login ul li a {
+  list-style: none;
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: rgb(255, 255, 255);
 }
 
 @media (max-width: 768px) {
@@ -210,11 +224,6 @@ body {
   max-width: 650px;
   gap: 1rem;
   margin-bottom: 100px;
-}
-
-summary {
-  padding-bottom: 10px;
-  font-size: 15px;
 }
 
 section {
@@ -591,6 +600,10 @@ footer {
 
   .success-message {
     max-width: 300px;
+  }
+
+  .profile-login{
+    display: block;
   }
 
   .action-buttons {
