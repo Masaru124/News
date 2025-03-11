@@ -59,9 +59,8 @@ def submit_article(request):
             if request.user.is_authenticated:
                 article.author = request.user
             else:
-                # If not authenticated, assign an admin user as the author
-                admin_user = User.objects.get(username='admin')
-                article.author = admin_user
+                # If not authenticated, redirect to login page
+                return redirect('login')
             
             article.save()  # Save the article to the database
             logger.info(f"Article submitted: {article.title}")

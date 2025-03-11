@@ -9,7 +9,7 @@ class UserProfileForm(forms.ModelForm):
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article  # Specify the model to use
-        fields = ['title', 'content', 'category', 'departments']  # Include the new department field
+        fields = ['title', 'content', 'category', 'departments', 'featured_image']  # Include the new department field and featured image
 
 class CommentForm(forms.ModelForm):
     class Meta:

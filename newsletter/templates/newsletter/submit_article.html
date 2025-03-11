@@ -66,7 +66,7 @@
 
     <main>
         <div class="submitnews">
-            <form id="newsubmit" method="post" action="{% url 'submit_article' %}">
+            <form id="newsubmit" method="post" action="{% url 'submit_article' %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 <h2 class="title">Submit an Article</h2>
 
@@ -103,7 +103,13 @@
                     <input type="hidden" name="content" id="content" required>
                 </div>
 
+                <div class="form-group">
+                    <label for="featured_image">Featured Image</label><br>
+                    <input type="file" name="featured_image" id="featured_image" accept="image/*">
+                </div>
+
                 <p class="info-text">Note: Your article will be reviewed by an admin before being published.</p>
+
 
                 <button class="submit" type="submit">Submit Article</button>
             </form>

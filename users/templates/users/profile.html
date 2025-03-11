@@ -65,13 +65,7 @@
 
     <div class="profile-container1">
         <div class="profile-header">
-            <div class="profile-pic">
-                {% if user.profile_picture %}
-                    <img src="{{ user.profile_picture.url }}" alt="Profile Picture" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1735528655501-cf671a3323c3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw2fHx8ZW58MHx8fHx8';">
-                {% else %}
-                    <img src="https://images.unsplash.com/photo-1735528655501-cf671a3323c3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw2fHx8ZW58MHx8fHx8" alt="Default Profile Picture">
-                {% endif %}
-            </div>
+           
             <div class="profile-info">
                 <h2>{{ user.username }}</h2>
                 <p class="profile-email">{{ user.email }}</p>

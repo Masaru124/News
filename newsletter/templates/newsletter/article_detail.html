@@ -11,6 +11,14 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
 
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
+    <style>
+      .article-image {
+        max-width: 100%;
+        height: auto;
+        margin: 20px 0;
+        border-radius: 8px;
+      }
+    </style>
   </head>
 
   <body>
@@ -52,6 +60,9 @@
     <div class="artcont">
       <div class="article-card">
         <h2 class="article-title">{{ article.title }}</h2>
+        {% if article.featured_image %}
+          <img src="{{ article.featured_image.url }}" alt="{{ article.title }}" class="article-image">
+        {% endif %}
         <hr>
         <p class="article-content">{{ article.content|safe }}</p>
         <hr>
@@ -74,7 +85,7 @@
         <div class="article-info">
           <p>{{ article.author.username }}</p>
           <p>{{ article.category.name }}</p>
-          <p>{{ article.created_at|date:"F d, Y" }}</p>
+          <p>{{ article.created_at|date:'F d, Y' }}</p>
         </div>
 
         <a href="{% url 'index' %}" class="back-btn">Back to Home</a>
@@ -98,7 +109,7 @@
         {% for comment in article.comments.all %}
         <div class="comment">
           <p><strong>{{ comment.author.username }}</strong>: {{ comment.content }}</p>
-          <p><em>Posted on: {{ comment.created_at|date:"F d, Y" }}</em></p>
+          <p><em>Posted on: {{ comment.created_at|date:'F d, Y' }}</em></p>
           {% if user.is_authenticated and user == comment.author %}
             <form method="post" action="{% url 'delete_comment' comment.id %}">
               {% csrf_token %}
