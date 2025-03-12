@@ -31,6 +31,8 @@ ALLOWED_HOSTS = [
     '44.226.122.3',
     '127.0.0.1',
     'localhost'
+    'news-production-df0f.up.railway.app',
+    'https://news-production-df0f.up.railway.app'
 ]
 
 INSTALLED_APPS = [
@@ -130,7 +132,7 @@ STATICFILES_DIRS = [
 
 # Media files
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = BASE_DIR / 'media'  # Ensure media files are stored in the media directory
 
 # Add WhiteNoise middleware for serving static files in production
 MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
