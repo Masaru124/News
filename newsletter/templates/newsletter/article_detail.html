@@ -1,5 +1,4 @@
-{% load static %}
-{% load custom_filters %}
+{% load static %} {% load custom_filters %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,10 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Article Detail</title>
     <link rel="stylesheet" href="{% static 'style.css' %}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
 
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
     <style>
       .article-image {
         max-width: 100%;
@@ -39,8 +50,17 @@
         </div>
         <div class="nav-links">
           <ul>
-            <li><a href="{% url 'index' %}" class="nav-link active">Home</a></li>
-            <li><a href="{% url 'submit_article' %}" class="nav-link">Submit News</a></li>
+            <li>
+              <a href="{% url 'index' %}" class="nav-link active">Home</a>
+            </li>
+            <li>
+              <a href="{% url 'submit_article' %}" class="nav-link">Submit News</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'profile' %}" class="nav-link"><i class="ri-user-3-fill"></i>{{ user.username }}</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}" class="nav-link"><i class="ri-user-3-fill"></i>Login</a></li>
+            {% endif %}
           </ul>
         </div>
       </nav>
@@ -52,33 +72,48 @@
         <button class="close-btn" onclick="toggleSidebar()">✖</button>
       </div>
       <div class="sidebar-links">
-        <li><a href="{% url 'index' %}" class="nav-link active">Home</a></li>
-        <li><a href="{% url 'submit_article' %}" class="nav-link">Submit News</a></li>
+        <a href="{% url 'index' %}" class="sidebar-link active">Home</a>
+        <a href="{% url 'submit_article' %}" class="sidebar-link">Submit News</a>
+        <!-- {% if user.is_authenticated %}
+        <a href="{% url 'profile' %}" class="sidebar-link">Profile</a>
+        {% else %}
+        <a href="{% url 'login' %}" class="sidebar-link">Login</a>
+        {% endif %} -->
       </div>
+  
     </div>
 
     <div class="artcont">
       <div class="article-card">
-        <h2 class="article-title">{{ article.title }}</h2>
+        <h1 class="heading-article">Article Detail</h1>
+        <hr />
+        <div class="article-header">
+          <h2 class="article-title">{{ article.title }}</h2>
+          <a href="{% url 'index' %}" class="back-btn">Back to Home</a>
+        </div>
+
         {% if article.featured_image %}
-          <img src="{{ article.featured_image.url }}" alt="{{ article.title }}" class="article-image">
+        <img
+          src="{{ article.featured_image.url }}"
+          alt="{{ article.title }}"
+          class="article-image"
+        />
         {% endif %}
-        <hr>
         <p class="article-content">{{ article.content|safe }}</p>
-        <hr>
         <div class="like-section">
           {% if user.is_authenticated %}
-            <form method="post" action="{% url 'like_article' article.id %}">
+          <a href="{% url 'like_article' article.id %}" class="like-btn">
+            <i class="fa-solid fa-heart"></i>
+          </a>
           {% else %}
-            <button class="like-btn" type="button" onclick="alert('Please log in to like this article.');">
-              <i class="fa-solid fa-heart"></i>
-            </button>
+          <a
+            href="#"
+            class="like-btn"
+            onclick="alert('Please log in to like this article.');"
+          >
+            <i class="fa-solid fa-heart"></i>
+          </a>
           {% endif %}
-            {% csrf_token %}
-            <button class="like-btn" type="submit">
-              <i class="fa-solid fa-heart"></i>
-            </button>
-          </form>
           <span class="like-count">{{ article.likes_count }} Likes</span>
         </div>
 
@@ -87,34 +122,42 @@
           <p>{{ article.category.name }}</p>
           <p>{{ article.created_at|date:'F d, Y' }}</p>
         </div>
-
-        <a href="{% url 'index' %}" class="back-btn">Back to Home</a>
       </div>
     </div>
-    
-    <!-- Comments Section -->
+
     <div class="comments-section">
-      <h3>Comments</h3>
+      <h2>Comments</h2>
+      <br />
       {% if user.is_authenticated %}
-        <form method="post" action="{% url 'submit_comment' article.id %}">
-          {% csrf_token %}
-          <textarea name="content" required placeholder="Add your comment here..."></textarea>
-          <button type="submit">Submit Comment</button>
-        </form>
+      <form method="post" action="{% url 'submit_comment' article.id %}">
+        {% csrf_token %}
+        <textarea
+          name="content"
+          required
+          placeholder="Add your comment here..."
+        ></textarea>
+        <button type="submit">Comment</button>
+      </form>
       {% else %}
-        <p>Please log in to submit a comment. <a href="{% url 'login' %}">Login here</a>.</p>
+      <p style="padding: 10px">
+        Please log in to submit a comment.
+        <a href="{% url 'login' %}">Login here</a>.
+      </p>
       {% endif %}
-      
+
       <div class="existing-comments">
         {% for comment in article.comments.all %}
         <div class="comment">
-          <p><strong>{{ comment.author.username }}</strong>: {{ comment.content }}</p>
+          <p>
+            <strong>{{ comment.author.username }}</strong>: {{ comment.content
+            }}
+          </p>
           <p><em>Posted on: {{ comment.created_at|date:'F d, Y' }}</em></p>
           {% if user.is_authenticated and user == comment.author %}
-            <form method="post" action="{% url 'delete_comment' comment.id %}">
-              {% csrf_token %}
-              <button type="submit">Delete</button>
-            </form>
+          <form method="post" action="{% url 'delete_comment' comment.id %}">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+          </form>
           {% endif %}
         </div>
         {% endfor %}
@@ -135,8 +178,13 @@
         <div class="footer-section social-links">
           <h3>Follow Us</h3>
           <div class="social-icons">
-            <a href="https://www.linkedin.com/school/amc-engineering-college/"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="https://www.instagram.com/amc.education?igsh=MTg3MndnemdtYjJhZg=="><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/school/amc-engineering-college/"
+              ><i class="fa-brands fa-linkedin"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/amc.education?igsh=MTg3MndnemdtYjJhZg=="
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
           </div>
         </div>
       </div>
@@ -150,6 +198,11 @@
         const sidebar = document.getElementById("sidebar");
         sidebar.classList.toggle("visible");
       }
+      document.querySelectorAll(".like-btn").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          this.classList.toggle("liked");
+        });
+      });
     </script>
   </body>
 </html>
