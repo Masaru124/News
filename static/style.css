@@ -693,7 +693,7 @@ footer {
   }
 
   .comments-section{
-    width: fit-content;
+    width: auto;
   }
 }
 
