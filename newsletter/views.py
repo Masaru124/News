@@ -62,7 +62,7 @@ def submit_article(request):
                 # If not authenticated, redirect to login page
                 return redirect('login')
             
-            article.save()  # Save the article to the database
+            article.save()  # Save the article to the database, including the featured image
             logger.info(f"Article submitted: {article.title}")
 
             # Display success message
