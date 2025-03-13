@@ -465,8 +465,7 @@ html {
 
 .home-btn {
   background-color: white;
-  color: #0095f6;
-  background-color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 .home-btn:hover {
